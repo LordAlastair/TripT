@@ -10,6 +10,9 @@
   "author": "Armando Magalhães",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "^1.15.0",
+    "consign": "^0.1.2",
+    "express": "^4.13.4",
+    "method-override": "^2.3.5"
   }
 }

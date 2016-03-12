@@ -1,8 +1,17 @@
+const methodOverride = require('method-override');
+const bodyParser  = require('body-parser');
+const consign = require('consign');
 const express = require('express');
 const app = express();
 
-app.get('/', function (req, res) {
-	res.send("Hello world.");
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride());
 
-app.listen(3000);
+consign()
+.include('models')
+.then('controllers')
+.then('routes')
+.into(app)
+
+app.listen(3000, () => console.log("Listening requests on 3000..."));

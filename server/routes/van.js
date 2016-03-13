@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function (app) {
-	const controller = app.controllers.home;
+	const controller = app.controllers.van;
 
   app
-  .route('/home')
+  .route('/van')
   .get(controller.get);
 };

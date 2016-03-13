@@ -6,8 +6,29 @@ Serviço de backend do projeto desenvolvido para Maratona técnologica da Uvv.
 
 # Arquitetura do projeto
 
-> TODO: Escrever
+A runtime do backend será construída utilizando [Node.js](https://nodejs.org).
 
+A API será construída utilizando [Express](https://expressjs.com).
+
+A API será responsável por manipular dados de usuários por HTTP seguindo o padrão RESTFUL (Representional State Transfer), respeitando os padrões do protocolo HTTP.
+
+O formato padrão para negociação de dados será o tipo MIME `application/json`. A API pode ser flexível em relação ao tipo de dados aceitos e retornados, podendo dar a opção ao desenvolvedor do cliente poder utilizar outro tipo MIME (e.g. `application/xml`) para negociação de dados.
+
+## Estrutura de Pastas
+
+```
+|-- server
+    |-- index.js // arquivo principal para a API
+    |-- package.json // definição de dependencias e comandos
+    |-- config // configurações do projeto
+    |-- controllers // controllers do projeto
+    |-- migrations // arquivos de migração
+    |-- models // modelos das entidades do banco de dados
+    |-- routes // definição de rotas da aplicação
+    |-- seeders // seed de dados limpos para aplicação
+    |-- tests // testes automatizados
+
+```
 ---
 
 # Ambiente de Desenvolvimento

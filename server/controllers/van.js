@@ -26,7 +26,6 @@ module.exports = function (app) {
 	controller.upsert = function(req, res) {
 
 	};
-	
 
 	return controller;
 };

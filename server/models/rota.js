@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
 			type: Sequelize.INTEGER
 		}
 	}, {
+		timestamps: false,
     classMethods: {
-			timestamps: false,
       associate: function(models) {
         // associations can be defined here
       }

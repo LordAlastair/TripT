@@ -5,9 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     der: DataTypes.STRING,
     vagas: DataTypes.INTEGER,
     modelo: DataTypes.STRING,
-    cor: DataTypes.STRING,
-    listaCaracteristicasId: DataTypes.INTEGER,
-    rotaId: DataTypes.INTEGER
+    cor: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

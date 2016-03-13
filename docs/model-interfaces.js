@@ -1,33 +1,35 @@
-model:create --name Van --attributes placa:string,der:string,vagas:int,modelo:string,cor:string,listaCaracteristicasId:int,rotaId:int --force
+Command : "sequelize model:create --name Van --attributes placa:string,der:string,vagas:integer,modelo:string,cor:string"
 interface Van {
-	id: int,
+	id: integer,
 	placa: string,
 	der: string,
-	vagas: int,
+	vagas: integer,
 	modelo: string,
-	cor: string,
-	listaCaracteristicasId: ListaCaracteristicas,
-	rotaId: Rota
+	cor: string
 };
 
+Command : "sequelize model:create --name ListaCaracteristicas --attributes vanId:integer,caracteristicaId:integer"
 interface ListaCaracteristicas {
-	id: int,
-	vanId: Van,
-	caracteristicaId: Caracteristica
+	id: integer,
+	vanId: (integer) Van,
+	caracteristicaId: (integer) Caracteristica
 };
 
+Command : "sequelize model:create --name Caracteristica --attributes nome:string"
 interface Caracteristica {
-	id: int,
+	id: integer,
 	nome: string
 };
 
+Command : "sequelize model:create --name Rota --attributes vanId:integer,bairroId:integer"
 interface Rota {
-	id: int,
-	vanId: Van,
-	bairros: Bairro
+	id: integer,
+	vanId: (integer) Van,
+	bairroId: (integer) Bairro
 };
 
+Command : "sequelize model:create --name Bairro --attributes nome:string"
 interface Bairro {
-	id: int,
+	id: integer,
 	nome: string
 };

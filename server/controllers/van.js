@@ -3,8 +3,28 @@
 module.exports = function (app) {
 	var controller = {};
 
-	controller.get = function(req, res) {
-		res.send("Hello");
+	controller.create = function(req, res) {
+
+	};
+
+	controller.read = function(req, res) {
+
+	};
+
+	controller.readAll = function(req, res) {
+
+	};
+
+	controller.delete = function(req, res) {
+
+	};
+
+	controller.update = function(req, res) {
+
+	};
+
+	controller.upsert = function(req, res) {
+
 	};
 
 	return controller;

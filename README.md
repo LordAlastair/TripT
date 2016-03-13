@@ -33,13 +33,9 @@ No momento, o ambiente necessita de 128mb de memória disponível.
 
 ## Iniciando Ambiente
 
-Com o terminal no root do projeto, inicie o ambiente de desenvolvimento.
+Com o terminal na pasta `./infrastructure` do projeto, inicie o ambiente de desenvolvimento.
 
 `$ vagrant up`
-
-Para acessar a maquina virtual:
-
-`$ vagrant ssh`
 
 ## Localização do Código Fonte
 
@@ -48,13 +44,13 @@ O diretório `./server` deste reposítorio é sincronizado com a pasta `/server`
 ## Iniciando o servidor
 
 - Acesse a maquina virtual:
-`$ vagrant ssh`
+`/ $ vagrant ssh`
 
 - Acesse o diretório:
-`$ cd /server`
+`/ $ cd /server`
 
 - Instale as dependências:
 `/server $ npm install`
 
 - Inicie o servidor:
-`/server $ npm start-dev`
+`/server $ npm run start-dev`

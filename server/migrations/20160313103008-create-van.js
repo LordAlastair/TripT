@@ -9,12 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       placa: {
+				allowNull: false,
         type: Sequelize.STRING
       },
       der: {
+				allowNull: false,
         type: Sequelize.STRING
       },
       vagas: {
+				allowNull: false,
         type: Sequelize.INTEGER
       },
       modelo: {
@@ -22,12 +25,6 @@ module.exports = {
       },
       cor: {
         type: Sequelize.STRING
-      },
-      listaCaracteristicasId: {
-        type: Sequelize.INTEGER
-      },
-      rotaId: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

@@ -17,8 +17,7 @@ models
 	app.use(methodOverride());
 
 	consign()
-	.include('models')
-	.then('controllers')
+	.include('controllers')
 	.then('routes')
 	.into(app)
 

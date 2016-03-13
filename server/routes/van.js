@@ -5,12 +5,12 @@ module.exports = function (app) {
 
   app
   .route('/van')
-  .get(controller.readAll)
+  .get(controller.findAll)
 	.post(controller.create)
 	.put(controller.update)
 	.delete(controller.delete);
 
 	app
 	.route('/van/:id')
-	.get(controller.read);
+	.get(controller.findById);
 };

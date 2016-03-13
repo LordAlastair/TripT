@@ -1,17 +1,16 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Van = sequelize.define('Van', {
-    placa: DataTypes.STRING,
-    der: DataTypes.STRING,
-    vagas: DataTypes.INTEGER,
-    modelo: DataTypes.STRING,
-    cor: DataTypes.STRING
-  }, {
+	var Sequelize = sequelize.Sequelize;
+	var schema = require('../schemas/van')(Sequelize);
+
+  var Van = sequelize.define('Van', schema, {
+		timestamps: false,
     classMethods: {
       associate: function(models) {
         // associations can be defined here
       }
     }
   });
+
   return Van;
 };

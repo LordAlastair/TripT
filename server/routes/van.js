@@ -12,5 +12,5 @@ module.exports = function (app) {
 
 	app
 	.route('/van/:id')
-	.get(controller.findById);
+	.get(controller.find);
 };

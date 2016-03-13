@@ -26,7 +26,7 @@ describe("GET /bairro", function() {
 describe("GET /bairro/:id", function() {
 	it("deve retornar um json object", function(done) {
 		request(app)
-		.get('/bairro/' + arrayBairros[0].id)
+		.get('/bairro/' + arrayBairros[0].bai_cd_bairro)
 		.expect('Content-Type', /json/)
 		.expect(200)
 		.end(function (err, res) {

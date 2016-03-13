@@ -1,14 +1,15 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Rota = sequelize.define('Rota', {
-    vanId: DataTypes.INTEGER,
-    bairroId: DataTypes.INTEGER
-  }, {
+	var Sequelize = sequelize.Sequelize;
+	var schema = require('../schemas/rota')(Sequelize);
+
+  var Rota = sequelize.define('Rota', schema, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
       }
     }
   });
+	
   return Rota;
 };

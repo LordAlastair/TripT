@@ -5,9 +5,9 @@ module.exports = function (app) {
 
   app
   .route('/bairro')
-  .get(controller.readAll);
+  .get(controller.findAll);
 
 	app
 	.route('/bairro/:id')
-	.get(controller.read);
+	.get(controller.find);
 };

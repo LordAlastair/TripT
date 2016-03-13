@@ -15,18 +15,6 @@ module.exports = function (app) {
 			res.json(vans);
 		});
 	};
-
-	controller.delete = function(req, res) {
-
-	};
-
-	controller.update = function(req, res) {
-
-	};
-
-	controller.upsert = function(req, res) {
-
-	};
-
+	
 	return controller;
 };

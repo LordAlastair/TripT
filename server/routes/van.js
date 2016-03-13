@@ -5,10 +5,7 @@ module.exports = function (app) {
 
   app
   .route('/van')
-  .get(controller.findAll)
-	.post(controller.create)
-	.put(controller.update)
-	.delete(controller.delete);
+  .get(controller.findAll);
 
 	app
 	.route('/van/:id')

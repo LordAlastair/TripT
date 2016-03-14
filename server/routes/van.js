@@ -6,7 +6,7 @@ module.exports = function (app) {
   app
   .route('/van')
   .get(controller.findAll)
-	.post(controller.create);
+  .post(controller.create);
 
   app
   .route('/van/:id')

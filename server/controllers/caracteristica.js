@@ -2,19 +2,19 @@
 const models = require('../models');
 
 module.exports = function (app) {
-	var controller = {};
+  var controller = {};
 
-	controller.find = function(req, res) {
+  controller.find = function(req, res) {
     models.Caracteristica.findById(req.params.id).then(function(caracteristica) {
       res.json(caracteristica);
     });
-	};
+  };
 
-	controller.findAll = function(req, res) {
+  controller.findAll = function(req, res) {
     models.Caracteristica.findAll().then(function(caracteristica) {
       res.json(caracteristica);
     });
-	};
+  };
 
-	return controller;
+  return controller;
 };

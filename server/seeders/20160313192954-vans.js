@@ -16,12 +16,11 @@ module.exports = {
         van_ds_placa: 'CDS-1472',
         van_ds_der: '751/32-02',
         van_qt_vagas: 25,
-        van_ds_modelo: 'PEGEOUT',
+        van_ds_modelo: 'PEUGEOT',
         van_ds_cor: 'VERDE'
       }
     ], {});
   },
-
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Vans', null, {});
   }

@@ -1,11 +1,16 @@
 {
-  "name": "server",
+  "name": "vagalivre-backend",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon index.js",
-    "test": "mocha --recursive"
+    "start": "node index.js",
+		"start-dev": "nodemon index.js",
+    "start-test": "export NODE_ENV=test; nodemon index.js",
+    "test": "export NODE_ENV=test; mocha --recursive",
+    "test-dev": "export NODE_ENV=test; mocha --recursive --watch",
+    "seed-dev": "sequelize db:seed:all",
+    "seed-test": "export NODE_ENV=test; sequelize db:seed:all"
   },
   "author": "Armando Magalhães",
   "license": "ISC",
@@ -22,6 +27,7 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.1",
+    "sequelize-cli": "^2.3.1",
     "supertest": "^1.2.0"
   }
 }

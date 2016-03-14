@@ -18,16 +18,14 @@ O formato padrão para negociação de dados será o tipo MIME `application/json
 
 ```
 |-- server
-    |-- index.js // arquivo principal para a API
-    |-- package.json // definição de dependencias e comandos
-    |-- config // configurações do projeto
-    |-- controllers // controllers do projeto
-    |-- migrations // arquivos de migração
-    |-- models // modelos das entidades do banco de dados
-    |-- routes // definição de rotas da aplicação
-    |-- seeders // seed de dados limpos para aplicação
-    |-- tests // testes automatizados
-
+  |-- index.js // arquivo principal do serviço
+  |-- package.json // definição de dependencias e comandos pre-definidos
+  |-- config // configurações do projeto
+  |-- controllers // controllers do projeto
+  |-- models // modelos das entidades do banco de dados
+  |-- routes // definição de rotas da aplicação
+  |-- seeders // seed de dados limpos para aplicação
+  |-- tests // testes automatizados
 ```
 ---
 

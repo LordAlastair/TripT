@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-		"start-dev": "nodemon index.js",
+    "start-dev": "nodemon index.js",
     "start-test": "export NODE_ENV=test; nodemon index.js",
     "test": "export NODE_ENV=test; mocha --recursive",
     "test-dev": "export NODE_ENV=test; mocha --recursive --watch",

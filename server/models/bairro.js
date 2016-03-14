@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       type: Sequelize.STRING
     }
-  }, {
+  },
+  {
     timestamps: false,
     classMethods: {
       associate: function(models) {

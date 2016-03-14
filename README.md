@@ -6,27 +6,54 @@ Serviço de backend do projeto desenvolvido para Maratona técnologica da Uvv.
 
 # Arquitetura do projeto
 
-A runtime do backend será construída utilizando [Node.js](https://nodejs.org).
+A runtime do backend sendo utilizada será o [Node.js](https://nodejs.org).
 
-A API será construída utilizando [Express](https://expressjs.com).
+A API será construída utilizando o módulo [Express](https://expressjs.com).
 
-A API será responsável por manipular dados de usuários por HTTP seguindo o padrão RESTFUL (Representional State Transfer), respeitando os padrões do protocolo HTTP.
+A API será responsável por manipular requisições HTTP seguindo o estilo REST (Representional State Transfer). A lógica responsável pela interpretação e respostas dessas requisições segue o padrão MVC.
 
-O formato padrão para negociação de dados será o tipo MIME `application/json`. A API pode ser flexível em relação ao tipo de dados aceitos e retornados, podendo dar a opção ao desenvolvedor do cliente poder utilizar outro tipo MIME (e.g. `application/xml`) para negociação de dados.
+O formato padrão para negociação de dados será o tipo MIME `application/json`.
+
+As requisições devem ser **semanticas**:
+
+  - Cabeçalhos das requisições devem conter as seguintes chaves:
+    - `Content-Type: application/json`
+    - `Accepts: application/json`
+
+
+  - Cabeçalhos das respostas devem conter as seguinte chaves:
+    - `Content-Type: application/json`
+
+
+  - Cabeçalhos das respostas devem conter status de acordo com o que realmente aconteceu:
+    - Ao acessar um recurso: `HTTP/1.1 200 OK`
+    - Ao criar um recurso: `HTTP/1.1 201 Created`
+    - Ao destruir um recurso: `HTTP/1.1 204 No Content`
+    - Ao atualizar um recurso: `HTTP/1.1 201 Created`
+    - Ao acessar um recurso sem permissão: `HTTP/1.1 403 Forbidden`
+    - Ao acessar recursos que não existam: `HTTP/1.1 404 Not Found`
+    - Ao receber requisição sem `Content-Type: application/json`: `HTTP/1.1 406 Not Acceptable`
 
 ## Estrutura de Pastas
 
 ```
-|-- server
-  |-- index.js // arquivo principal do serviço
-  |-- package.json // definição de dependencias e comandos pre-definidos
-  |-- config // configurações do projeto
-  |-- controllers // controllers do projeto
-  |-- models // modelos das entidades do banco de dados
-  |-- routes // definição de rotas da aplicação
-  |-- seeders // seed de dados limpos para aplicação
-  |-- tests // testes automatizados
+|-- docs              // Documentos sobre o projeto
+|-- infrastructure    // Arquivos sobre a infraestrutura de desenvolvimento
+|-- server            // Codigo fonte do webservice
+  |-- index.js        // Arquivo principal do serviço
+  |-- package.json    // Definição de dependencias e comandos pre-definidos
+  |-- config          // Configurações do projeto
+  |-- controllers     // Controllers do projeto
+  |-- models          // Modelos das entidades do banco de dados
+  |-- routes          // Definição de rotas da aplicação
+  |-- seeders         // Seed de dados limpos para aplicação
+  |-- tests           // Testes automatizados
 ```
+
+## Persistencia de Dados
+
+A arquitetura de persistencia de dados será criada utilizando o RDBMS [PostgreSQL 9.5](http://www.postgresql.org/). Por ser rápido, simples, opensource e de facil configuração, foi a opção mais aceita pelo grupo.
+
 ---
 
 # Ambiente de Desenvolvimento
@@ -73,3 +100,5 @@ O diretório `./server` deste reposítorio é sincronizado com a pasta `/server`
 
 - Inicie o servidor:
 `/server $ npm run start-dev`
+
+---

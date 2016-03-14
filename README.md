@@ -1,5 +1,7 @@
 # Vaga Livre - Backend
 
+[ ![Codeship Status for vagalivre/vagalivre-backend](https://codeship.com/projects/5d7f0420-acf9-0133-9a6a-0a06bc138256/status?branch=master)](https://codeship.com/projects/131866)
+
 Serviço de backend do projeto desenvolvido para Maratona técnologica da Uvv.
 
 ---

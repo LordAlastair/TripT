@@ -1,16 +1,14 @@
 'use strict';
 
 module.exports = function (app) {
-	const controller = app.controllers.van;
+  const controller = app.controllers.van;
 
   app
   .route('/van')
-  .get(controller.readAll)
-	.post(controller.create)
-	.put(controller.update)
-	.delete(controller.delete);
+  .get(controller.findAll)
+  .post(controller.create);
 
-	app
-	.route('/van/:id')
-	.get(controller.read);
+  app
+  .route('/van/:id')
+  .get(controller.find);
 };

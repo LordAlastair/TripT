@@ -3,9 +3,9 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Bairros', [
-			{ nome: 'Itapuã', createdAt: new Date(), updatedAt: new Date() },
-			{ nome: 'Itaparica' , createdAt: new Date(), updatedAt: new Date() }
-		], {});
+      { bai_ds_bairro: 'Itapuã' },
+      { bai_ds_bairro: 'Itaparica' }
+    ], {});
   },
 
   down: function (queryInterface, Sequelize) {

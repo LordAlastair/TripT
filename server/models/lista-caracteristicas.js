@@ -2,18 +2,18 @@
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var Rota = sequelize.define('Rota', {
-    rot_cd_rota: {
+  var ListaCaracteristica = sequelize.define('ListaCaracteristica', {
+    lic_cd_lista_caracteristica: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    rot_cd_van: {
+    lic_cd_van: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    rot_cd_bairro: {
+    lic_cd_caracteristica: {
       allowNull: false,
       type: Sequelize.INTEGER
     }
@@ -26,5 +26,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return Rota;
+  return ListaCaracteristica;
 };

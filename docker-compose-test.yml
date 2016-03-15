@@ -1,0 +1,18 @@
+webservice:
+  build: ./server
+  links:
+    - database:postgres
+  command:
+    - npm test
+  environment:
+    - NODE_ENV=test
+
+database:
+  image: postgres:9.4
+  ports:
+    - 32775:5432
+  environment:
+    - POSTGRES_PASSWORD=passw0rd
+    - POSTGRES_USER=admin
+    - POSTGRES_DB=vagalivre
+    - PGDATA=/var/lib/test-db/data

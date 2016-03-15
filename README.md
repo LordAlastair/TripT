@@ -68,7 +68,7 @@ A arquitetura de persistencia de dados será criada utilizando o RDBMS [PostgreS
 
  Tenha instalado:
  - [Git](http://git-scm.com)
- - [Nodejs](http://nodejs.org)
+ - [Node.js](http://nodejs.org)
  - [PostgreSQL 9.4](http://www.postgresql.org/)
  - [Babun](http://babun.github.io)
 
@@ -96,7 +96,7 @@ Nesse momento seu banco de dados agora deve estar com a estrutura da tabela cria
 
 Para fazer o seed de informações como `Bairro` e `Caracteristicas`, execute o comando:
 
-`npm run seed-dev`
+`npm run seed`
 
 ## Automatizado
 

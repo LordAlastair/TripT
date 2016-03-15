@@ -9,7 +9,9 @@
     "start-test": "export NODE_ENV=test; nodemon index.js",
     "test": "export NODE_ENV=test; mocha --recursive",
     "test-dev": "export NODE_ENV=test; mocha --recursive --watch",
-    "seed-dev": "sequelize db:seed:all",
+		"migrate-dev": "node ./migrations/sync.js",
+		"migrate-test": "export NODE_ENV=test; node ./migrations/sync.js",
+    "seed": "sequelize db:seed:all",
     "seed-test": "export NODE_ENV=test; sequelize db:seed:all"
   },
   "author": "Armando Magalhães",

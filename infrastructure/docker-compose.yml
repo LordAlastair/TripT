@@ -1,0 +1,16 @@
+database-dev:
+  build: database-dev
+  ports:
+    - 32776:5432
+  environment:
+    - POSTGRES_PASSWORD=passw0rd
+    - POSTGRES_USER=admin
+    - POSTGRES_DB=vagalivre
+database-test:
+  build: database-test
+  ports:
+    - 32775:5432
+  environment:
+    - POSTGRES_PASSWORD=passw0rd
+    - POSTGRES_USER=admin
+    - POSTGRES_DB=vagalivre

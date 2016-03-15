@@ -1,16 +1,18 @@
 database-dev:
-  build: database-dev
+  image: postgres:9.4
   ports:
     - 32776:5432
   environment:
     - POSTGRES_PASSWORD=passw0rd
     - POSTGRES_USER=admin
     - POSTGRES_DB=vagalivre
+    - PGDATA=/var/lib/dev-db/data
 database-test:
-  build: database-test
+  image: postgres:9.4
   ports:
     - 32775:5432
   environment:
     - POSTGRES_PASSWORD=passw0rd
     - POSTGRES_USER=admin
     - POSTGRES_DB=vagalivre
+    - PGDATA=/var/lib/test-db/data

@@ -37,7 +37,7 @@ module.exports = function (app) {
   };
 
   controller.update = function(req, res) {
-    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "van_cd_van":1, "van_ds_placa": "ABC1234", "van_ds_der": "33891505", "van_qt_vagas": 2, "van_ds_modelo": "coco", "van_ds_cor": "desgraca"}' http://localhost:3000/van/1
+    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "van_ds_placa": "ABC1234", "van_ds_der": "33891505", "van_qt_vagas": 2, "van_ds_modelo": "coco", "van_ds_cor": "desgraca"}' http://localhost:3000/van/1
 
     models
     .Van

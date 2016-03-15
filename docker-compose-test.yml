@@ -7,7 +7,7 @@ webservice:
   environment:
     - NODE_ENV=test
 
-database:
+databasetest:
   image: postgres:9.4
   ports:
     - 32775:5432

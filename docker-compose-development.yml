@@ -1,13 +1,14 @@
 webservice:
   build: ./server
+  command: npm start
   ports:
-    - 3000:3000
+    - "3000:3000"
   links:
-    - database-dev:postgres
+    - databasedev:postgres
   environment:
     - NODE_ENV=development
 
-database-dev:
+databasedev:
   image: postgres:9.4
   ports:
     - 32776:5432

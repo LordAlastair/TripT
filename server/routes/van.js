@@ -8,7 +8,9 @@ module.exports = function (app) {
   .get(controller.findAll)
   .post(controller.create);
 
+
   app
   .route('/van/:id')
-  .get(controller.find);
+  .get(controller.find)
+  .put(controller.update);
 };

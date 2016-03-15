@@ -36,5 +36,22 @@ module.exports = function (app) {
     });
   };
 
+  controller.update = function(req, res) {
+    models
+    .Van
+    .update(req.body,{
+              where: {
+                van_cd_van: req.params.id
+              }
+            })
+    .then(function(van) {
+      res.json(van);
+    })
+    .catch(function(error) {
+      res.status(500).json(error);
+      });
+    };
+
+
   return controller;
 };

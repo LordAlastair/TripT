@@ -7,9 +7,9 @@
     "start": "node index.js",
     "start-dev": "nodemon index.js",
     "start-test": "export NODE_ENV=test; nodemon index.js",
-    "test": "export NODE_ENV=test; mocha --recursive",
+    "test": "mocha --recursive",
     "test-dev": "export NODE_ENV=test; mocha --recursive --watch",
-    "migrate-dev": "node ./migrations/sync.js",
+    "migrate": "node ./migrations/sync.js",
     "migrate-test": "export NODE_ENV=test; node ./migrations/sync.js",
     "seed": "sequelize db:seed:all",
     "seed-test": "export NODE_ENV=test; sequelize db:seed:all"

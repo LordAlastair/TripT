@@ -36,5 +36,24 @@ module.exports = function (app) {
     });
   };
 
+  controller.update = function(req, res) {
+    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "van_ds_placa": "ABC1234", "van_ds_der": "33891505", "van_qt_vagas": 2, "van_ds_modelo": "coco", "van_ds_cor": "desgraca"}' http://localhost:3000/van/1
+
+    models
+    .Van
+    .update(req.body,{
+              where: {
+                van_cd_van: req.params.id
+              }
+            })
+    .then(function(van) {
+      res.json(van);
+    })
+    .catch(function(error) {
+      res.status(500).json(error);
+      });
+    };
+
+
   return controller;
 };

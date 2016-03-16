@@ -78,7 +78,7 @@ Tenha seu servidor PostgreSQL rodando e algum gerenciador de RDBMS visual para f
 
 Configure o arquivo `config/config.json` para apontar para seu banco local.
 
-No terminal, execute:
+Com o servidor de PostgreSQL rodando, execute:
 
 ```bash
 # clone o projeto
@@ -90,16 +90,24 @@ cd vagalivre-backend/server/
 # instale as dependencias
 npm install
 
+# cria a estrutura das tabelas
+npm run migration
+
+# insere dados iniciais no banco de dados
+npm run seed
+
 # inicie a aplicação
 npm run start-dev
 ```
 
-Nesse momento seu banco de dados agora deve estar com a estrutura da tabela criada.
-
-Para fazer o seed de informações como `Bairro` e `Caracteristicas`, execute o comando:
-
-`npm run seed`
-
 ## Automatizado
 
 Atualmente estou trabalhando na virtualização com [Docker](http://docker.com), já que tenho usado pra manter os bancos de desenvolvimento e teste funcionando juntos de forma padronizada e reproduzivel.
+
+### UPDATE: 16/03/2015
+
+Atualmente temos a criação da infraestrutura necessaria já automatizada para a aplicação funcionar em ambientes de teste e produção em qualquer sistema operacional.
+
+Porém para ambiente de desenvolvimento, somente se o sistema operacional for uma distribuição Linux, pois o Docker roda em cima da kernel do linux para virtualizar seus containeres e criar os volumes para sincronizar pastas do Container com o Host.
+
+O Windows e o Mac criam uma maquina virtual mínima para rodar o Docker e as dependencias, o que não nos permite sincronizar de forma nativa as pastas utilizando somente volumes do docker.

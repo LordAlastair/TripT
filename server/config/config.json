@@ -3,7 +3,7 @@
     "username": "admin",
     "password": "passw0rd",
     "database": "vagalivre",
-    "host": "192.168.99.100",
+    "host": "db",
     "port": "32776",
     "dialect": "postgres"
   },
@@ -11,7 +11,7 @@
     "username": "admin",
     "password": "passw0rd",
     "database": "vagalivre",
-    "host": "192.168.99.100",
+    "host": "localhost",
     "port": "32775",
     "dialect": "postgres"
   },

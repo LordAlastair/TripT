@@ -12,11 +12,9 @@ services:
 
   webservice:
     build: ./server
-    command: npm run start-dev
+    command: sh -c 'npm run migrate; npm run seed; npm run start-dev'
     depends_on:
       - db
-    volumes:
-      - ~/Documents/vagalivre-backend/server:/server
     ports:
       - 3000:3000
     links:

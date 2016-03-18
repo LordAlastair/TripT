@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:3000
     links:
-      - "db:database"
+      - "db:postgres"
     environment:
       - NODE_ENV=test
 

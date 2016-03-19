@@ -4,17 +4,17 @@ services:
     build: ./server
     command: npm test
     depends_on:
-      - databasetest
+      - db
     volumes:
-      - /Users/armandomagalhaes/Documents/Projetos/Uvv/Vans/server:/server
+      - ~/Documents/vagalivre-backend/server:/server
     ports:
       - 3000:3000
     links:
-      - databasetest
+      - "db:postgres"
     environment:
       - NODE_ENV=test
 
-  databasetest:
+  db:
     image: postgres:9.4
     ports:
       - 32775:5432

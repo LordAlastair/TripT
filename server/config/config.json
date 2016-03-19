@@ -3,16 +3,16 @@
     "username": "admin",
     "password": "passw0rd",
     "database": "vagalivre",
-    "host": "192.168.99.100",
-    "port": "32776",
+    "host": "db",
+    "port": "5432",
     "dialect": "postgres"
   },
   "test": {
     "username": "admin",
     "password": "passw0rd",
     "database": "vagalivre",
-    "host": "192.168.99.100",
-    "port": "32775",
+    "host": "postgres",
+    "port": "5432",
     "dialect": "postgres"
   },
   "production": {

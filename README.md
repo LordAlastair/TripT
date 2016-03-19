@@ -16,7 +16,7 @@ A API será responsável por manipular requisições HTTP seguindo o estilo REST
 
 O formato padrão para negociação de dados será o tipo MIME `application/json`.
 
-As requisições devem ser **semanticas**:
+As requisições devem ser **semânticas**:
 
   - Cabeçalhos das requisições devem conter as seguintes chaves:
     - `Content-Type: application/json`
@@ -90,10 +90,11 @@ cd vagalivre-backend/server/
 # instale as dependencias
 npm install
 
-# cria a estrutura das tabelas
+# cria a estrutura das tabelas, execute na primeira vez, e caso altere propriedades de models que já foram criados
+# caso voce crie novos models, ao reiniciar o servidor ele irá sincronizar eles e suas devidas estruturas
 npm run migration
 
-# insere dados iniciais no banco de dados
+# insere dados iniciais no banco de dados, execute só na primeira vez
 npm run seed
 
 # inicie a aplicação
@@ -104,10 +105,16 @@ npm run start-dev
 
 Atualmente estou trabalhando na virtualização com [Docker](http://docker.com), já que tenho usado pra manter os bancos de desenvolvimento e teste funcionando juntos de forma padronizada e reproduzivel.
 
-### UPDATE: 16/03/2015
+### UPDATE: 16/03/2016
 
 Atualmente temos a criação da infraestrutura necessaria já automatizada para a aplicação funcionar em ambientes de teste e produção em qualquer sistema operacional.
 
 Porém para ambiente de desenvolvimento, somente se o sistema operacional for uma distribuição Linux, pois o Docker roda em cima da kernel do linux para virtualizar seus containeres e criar os volumes para sincronizar pastas do Container com o Host.
 
 O Windows e o Mac criam uma maquina virtual mínima para rodar o Docker e as dependencias, o que não nos permite sincronizar de forma nativa as pastas utilizando somente volumes do docker.
+
+### UPDATE: 19/03/2016
+
+Consegui fazer uma configuração com os volumes do `docker` e do `docker-compose` que permite o sincronismo das pastas durante o desenvolvimento.
+
+Além disso, o `docker-compose` consegue criar networks para seus containeres, o que significa que você, ao usar a propriedade `links` no seu `docker-compose.yml`, voce dá a habilidade de um container encontrar o outro pelo seu nome. Ele basicamente configura um hostname no arquivo `/etc/hosts` com o ip do container e o nome dele como host, o que é ótimo para configuração do banco de dados para a aplicação.

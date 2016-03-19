@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = function (app) {
-  const controller = app.controllers.van;
+  const controller = app.controllers["veiculo-bairro"];
 
   app
-  .route('/van')
+  .route('/veiculoBairro')
   .get(controller.findAll)
   .post(controller.create);
 
   app
-  .route('/van/:id')
+  .route('/veiculoBairro/:id')
   .get(controller.find)
   .put(controller.update);
 };

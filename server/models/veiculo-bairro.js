@@ -2,18 +2,18 @@
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var ListaCaracteristica = sequelize.define('ListaCaracteristica', {
-    lic_cd_lista_caracteristica: {
+  var VeiculoBairro = sequelize.define('VeiculoBairro', {
+    veb_cd_veiculo_bairro: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    lic_cd_van: {
+    veb_cd_veiculo: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    lic_cd_caracteristica: {
+    veb_cd_bairro: {
       allowNull: false,
       type: Sequelize.INTEGER
     }
@@ -21,10 +21,10 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
     }
   });
 
-  return ListaCaracteristica;
+  return VeiculoBairro;
 };

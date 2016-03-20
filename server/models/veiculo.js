@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        models.Veiculo.hasMany(models.VeiculoCaracteristica, {
+        Veiculo.hasMany(models.VeiculoCaracteristica, {
           foreignKey: 'vec_cd_veiculo',
           allowNull: false
         });

@@ -8,9 +8,17 @@ module.exports = function (app) {
   controller.find = function(req, res) {
     models
     .Veiculo
-    .findById(req.params.id)
+    .findById(req.params.id, {
+      include: [
+        { all: true }
+      ]
+    })
     .then(function(veiculo) {
-      res.json(veiculo);
+      if (veiculo) {
+        res.json(veiculo);
+      } else {
+        res.status(404).send();
+      }
     });
   };
 

@@ -34,6 +34,9 @@ module.exports = function(sequelize, DataTypes) {
         Veiculo.hasMany(models.VeiculoCaracteristica, {
           foreignKey: 'vec_cd_veiculo',
           allowNull: false
+        }, models.VeiculoBairro, {
+          foreignKey: 'veb_cd_veiculo',
+          allowNull: false;
         });
       }
     }

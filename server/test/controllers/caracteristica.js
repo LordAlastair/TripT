@@ -30,3 +30,28 @@ describe("GET /Caracteristica", function() {
     });
   });
 });
+
+
+
+describe("GET /caracteristica/:id", function() {
+    var caracteristica;
+
+    it("deve retornar um json object e código 200", function(done) {
+      var id = arrayCaracteristica[0].car_cd_caracteristica;
+
+      request(app)
+      .get(`/caracteristica/${id}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function (err, res) {
+        if (err) throw err;
+
+        expect(res.body).to.be.a('object');
+        expect(res.body).to.have.all.keys('car_cd_caracteristica', 'car_ds_caracteristica');
+
+        caracteristica = res.body
+
+        done();
+      });
+    });
+});

@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         }, models.VeiculoBairro, {
           foreignKey: 'veb_cd_veiculo',
-          allowNull: false;
+          allowNull: false
         });
       }
     }

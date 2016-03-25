@@ -4,8 +4,8 @@
     "username": "admin",
     "password": "passw0rd",
     "database": "vagalivre",
-    "host": "db",
-    "port": "5432",
+    "host": "192.168.99.100",
+    "port": "32776",
     "dialect": "postgres"
   },
   "test": {

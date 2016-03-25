@@ -3,7 +3,6 @@ const bodyParser  = require('body-parser');
 const consign = require('consign');
 const express = require('express');
 const passport = require('passport');
-const jwt = require('jwt-simple');
 const app = express();
 
 app.use(bodyParser.json());

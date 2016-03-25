@@ -30,15 +30,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       comparePassword: function (password) {
+        var that = this;
+
         return new Promise(function(resolve, reject) {
-          bcrypt.compare(password, this.usu_ds_senha, function(err, isMatch) {
+          bcrypt.compare(password, that.usu_ds_senha, function(err, res) {
             if (err) {
               reject(err);
             }
 
-            resolve(isMatch);
+            resolve(res);
           })
         });
+
+        // return bcrypt.compareSync(password, this.usu_ds_senha);
       }
     },
     hooks: {

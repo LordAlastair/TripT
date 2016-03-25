@@ -54,4 +54,10 @@ describe("GET /caracteristica/:id", function() {
         done();
       });
     });
+    it("deve ter car_cd_caracteristica igual a :id", function(done) {
+      var id = arrayCaracteristica[0].car_cd_caracteristica;
+      expect(caracteristica).to.have.property('car_cd_caracteristica').that.is.equals(id);      
+
+      done();
+    });
 });

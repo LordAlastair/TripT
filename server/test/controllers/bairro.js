@@ -55,12 +55,9 @@ describe("GET /bairro/:id", function() {
   });
 
   it("deve ter bai_cd_bairro igual a :id", function(done) {
-    var bairros = 0;
-    var id = arrayBairros[bairros].bai_cd_bairro;
+    var id = arrayBairros[0].bai_cd_bairro;
 
-    for(bairros = 0 ; bairros < id; bairros++){
-      expect(bairro).to.have.property('bai_cd_bairro').that.is.equals(id);
-    }
+    expect(bairro).to.have.property('bai_cd_bairro').that.is.equals(id);
 
     done();
   });

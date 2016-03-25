@@ -23,6 +23,7 @@ describe("GET /bairro", function() {
       expect(res.body).to.be.an('array');
       expect(res.body).to.have.length.above(1);
 
+
       arrayBairros = res.body;
 
       done();

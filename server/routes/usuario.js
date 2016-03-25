@@ -9,5 +9,5 @@ module.exports = function (app) {
 
   app
   .route('/signup')
-  .put(controller.signup);
+  .post(controller.signup);
 };

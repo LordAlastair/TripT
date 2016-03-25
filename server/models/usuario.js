@@ -42,10 +42,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     hooks: {
-      beforeCreate: function(usuario, options) {
+      beforeCreate: function(usuario, options, cb) {
         bcrypt.genSalt(10, function (err, salt) {
           if (err) {
-            throw err;
+            return cb(err);
           }
 
           bcrypt.hash(usuario.usu_ds_senha, salt, function (err, hash) {
@@ -54,6 +54,8 @@ module.exports = function(sequelize, DataTypes) {
             }
 
             usuario.usu_ds_senha = hash;
+
+            return cb(null, options);
           });
         });
       }

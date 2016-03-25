@@ -10,19 +10,20 @@ module.exports = function(app) {
   };
 
   controller.signup = function(req, res) {
-    if (!req.body.name || !req.body.password) {
-      res.json({success: false, msg: 'Please pass name and password.'});
+    if (!req.body.usu_ds_email || !req.body.usu_ds_senha) {
+      res.status(500).json({ message: 'Dados inválidos.' });
     } else {
-      var newUser = new User({
-        name: req.body.name,
-        password: req.body.password
-      });
-
-      newUser.save(function(err) {
-        if (err) {
-          return res.json({success: false, msg: 'Username already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new user.'});
+      models
+      .Usuario
+      .create({
+        usu_ds_email: req.body.usu_ds_email,
+        usu_ds_senha: req.body.usu_ds_senha
+      })
+      .then(function(usuario) {
+        res.json({ message: 'Usuário criado.' });
+      })
+      .catch(function(err) {
+        res.status(500).json({ message: 'Usuário já existe.' });
       });
     }
   };

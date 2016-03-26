@@ -14,11 +14,12 @@ module.exports = function (app) {
       ]
     })
     .then(function(veiculo) {
-      if (veiculo) {
-        res.json(veiculo);
-      } else {
-        res.status(404).send();
+      if (!veiculo) {
+        res.status(404).end();
+        return;
       }
+
+      res.json(veiculo);
     });
   };
 
@@ -42,7 +43,7 @@ module.exports = function (app) {
     .Veiculo
     .create(req.body)
     .then(function(veiculo) {
-      res.json(veiculo);
+      res.status(201).json(veiculo);
     })
     .catch(function(error) {
       res.status(500).json(error);

@@ -2,8 +2,12 @@ const methodOverride = require('method-override');
 const bodyParser  = require('body-parser');
 const consign = require('consign');
 const express = require('express');
-const passport = require('passport');
 const app = express();
+
+const passport = require('passport');
+require('../config/passport')(passport);
+
+app.set('jwtSecret', 'v4l1-vagal1vr3@app');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

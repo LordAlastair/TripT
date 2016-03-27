@@ -1,15 +1,19 @@
 'use strict';
 
+const express = require('express');
+const passport = require('passport');
+
 module.exports = function (app) {
   const controller = app.controllers.veiculo;
+  const router = express.Router();
 
-  app
-  .route('/veiculo')
-  .get(controller.findAll)
-  .post(controller.create);
+  router.use(passport.authenticate('jwt', { session: false }));
 
-  app
-  .route('/veiculo/:id')
-  .get(controller.find)
-  .put(controller.update);
+  router.get('/', controller.findAll);
+  router.post('/', controller.create);
+
+  router.get('/:id', controller.find);
+  router.put('/:id', controller.update);
+
+  app.use('/veiculo', router)
 };

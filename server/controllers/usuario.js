@@ -9,14 +9,12 @@ module.exports = function(app) {
 
   controller.authenticate = function(req, res) {
     if (!req.body.usu_ds_email || !req.body.usu_ds_senha) {
-      res.status(412).json({ message: 'Dados inválidos.' });
+      res.status(412).json({ message: 'Dados de autênticação são obrigatórios.' });
     } else {
       models
       .Usuario
       .findOne({
-        where: {
-          'usu_ds_email': req.body.usu_ds_email
-        }
+        where: { 'usu_ds_email': req.body.usu_ds_email }
       })
       .then(function(usuario) {
         if (!usuario) {
@@ -28,7 +26,9 @@ module.exports = function(app) {
             if (!matches) {
               res.status(401).json({ message: 'Senha inválida.' });
             } else {
-              res.json({ token: jwt.encode(usuario, security.secret) });
+              res.json({
+                token: "JWT " + jwt.encode(usuario, security.secret)
+              });
             }
           })
           .catch(function(err) {

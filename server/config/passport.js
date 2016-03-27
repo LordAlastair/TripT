@@ -15,11 +15,7 @@ module.exports = function (passport) {
     .Usuario
     .findById(payload.usu_cd_usuario)
     .then(function(usuario) {
-      if (usuario) {
-        return done(null, usuario);
-      } else {
-        return done(null, false);
-      }
+      return done(null, usuario);
     })
     .catch(function(err) {
       return done(err, false);

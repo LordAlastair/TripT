@@ -8,8 +8,6 @@ const app = express();
 const passport = require('passport');
 require('../config/passport')(passport);
 
-app.set('jwtSecret', 'v4l1-vagal1vr3@app');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());

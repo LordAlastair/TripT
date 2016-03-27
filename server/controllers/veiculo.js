@@ -46,7 +46,7 @@ module.exports = function (app) {
       res.status(201).json(veiculo);
     })
     .catch(function(error) {
-      res.status(500).json(error);
+      res.status(412).json(error);
     });
   };
 
@@ -64,7 +64,7 @@ module.exports = function (app) {
       res.json(veiculo);
     })
     .catch(function(error) {
-      res.status(500).json(error);
+      res.status(412).json(error);
     });
   };
 

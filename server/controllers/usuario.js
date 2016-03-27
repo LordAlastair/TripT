@@ -1,15 +1,15 @@
 'use strict';
 
+const jwt = require('jwt-simple');
 const models = require('../models');
 const security = require('../config/security.json');
-const jwt = require('jwt-simple');
 
 module.exports = function(app) {
   var controller = {};
 
   controller.authenticate = function(req, res) {
     req.assert('usu_ds_email', 'Email é obrigatório.').notEmpty();
-    req.assert('usu_ds_senha', 'Senha é obrigatória.').len(6, 20);
+    req.assert('usu_ds_senha', 'Senha deve ter entre 6 e 20 caractéres.').len(6, 20);
 
     var errors = req.validationErrors();
 
@@ -26,22 +26,24 @@ module.exports = function(app) {
     .then(function(usuario) {
       if (!usuario) {
         res.status(401).json({ message: 'Email não cadastrado.' });
-      } else {
-        usuario
-        .comparePassword(req.body.usu_ds_senha)
-        .then(function(matches) {
-          if (!matches) {
-            res.status(401).json({ message: 'Senha inválida.' });
-          } else {
-            res.json({
-              token: "JWT " + jwt.encode(usuario, security.secret)
-            });
-          }
-        })
-        .catch(function(err) {
-          res.status(403).json(err);
-        });
+        return;
       }
+
+      usuario
+      .comparePassword(req.body.usu_ds_senha)
+      .then(function(matches) {
+        if (!matches) {
+          res.status(401).json({ message: 'Senha inválida.' });
+          return;
+        }
+
+        res.json({
+          token: "JWT " + jwt.encode(usuario, security.secret)
+        });
+      })
+      .catch(function(err) {
+        res.status(403).json(err);
+      });
     })
     .catch(function(err) {
       res.json(err);
@@ -50,7 +52,7 @@ module.exports = function(app) {
 
   controller.signup = function(req, res) {
     req.assert('usu_ds_email', 'Email é obrigatório.').notEmpty();
-    req.assert('usu_ds_senha', 'Senha é obrigatória.').len(6, 20);
+    req.assert('usu_ds_senha', 'Senha deve ter entre 6 e 20 caractéres.').len(6, 20);
 
     var errors = req.validationErrors();
 

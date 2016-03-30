@@ -2,8 +2,6 @@
 
 Serviço de backend do projeto desenvolvido para Maratona técnologica da Uvv.
 
----
-
 # Arquitetura do projeto
 
 A runtime utilizada foi [Node.js](https://nodejs.org).

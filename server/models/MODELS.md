@@ -7,6 +7,7 @@ Nesse diretório se encontram os models do projeto.
 Toda documentação necessária pode ser encontrada em [Sequelize.js](http://docs.sequelizejs.com/en/latest/).
 
 Sobre definição de models: [Sequelize.js - Models > Definition](http://docs.sequelizejs.com/en/latest/docs/models-definition/)
+
 Sobre como usar os models: [Sequelize.js - Models > Usage](http://docs.sequelizejs.com/en/latest/docs/models-usage/)
 
 ## Boilerplate

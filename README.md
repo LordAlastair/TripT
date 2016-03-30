@@ -1,12 +1,4 @@
-# Vaga Livre - Backend
-
-Master:
-
-[ ![Codeship Status for vagalivre/vagalivre-backend](https://codeship.com/projects/5d7f0420-acf9-0133-9a6a-0a06bc138256/status?branch=master)](https://codeship.com/projects/131866)
-
-Development:
-
-[ ![Codeship Status for vagalivre/vagalivre-backend](https://codeship.com/projects/5d7f0420-acf9-0133-9a6a-0a06bc138256/status?branch=dev)](https://codeship.com/projects/131866)
+# Tript - Backend
 
 Serviço de backend do projeto desenvolvido para Maratona técnologica da Uvv.
 
@@ -69,6 +61,12 @@ A arquitetura de persistencia de dados será criada utilizando o RDBMS [PostgreS
 
 # Como configurar o ambiente de desenvolvimento
 
+Conta para Desenvolvimento (Bitbucket):
+
+**Email:** vali.develop@gmail.com
+
+**Senha:** vali2016
+
 ## Manual
 
  Tenha instalado:
@@ -84,10 +82,10 @@ Com o servidor de PostgreSQL funcionando, execute:
 
 ```bash
 # clone o projeto
-git clone https://seu_username@bitbucket.org/vagalivre/vali-backend.git
+git clone https://github.com/LordAlastair/TripT.git
 
 # acesse o diretório do servidor
-cd vali-backend/server/
+cd TripT/server/
 
 # instale as dependencias
 npm install
@@ -110,10 +108,10 @@ Tenha instalado:
 
 ```bash
 # clone o projeto
-git clone https://seu_username@bitbucket.org/vagalivre/vali-backend.git
+git clone https://github.com/LordAlastair/TripT.git
 
-# acesse o diretório do repositorio
-cd vali-backend
+# acesse o diretório
+cd TripT
 
 # Windows / Mac OS
 docker-machine start && eval $(docker-machine env)

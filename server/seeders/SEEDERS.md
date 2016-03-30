@@ -22,6 +22,8 @@ Essas propriedades recebem um objeto do tipo `function` que precisa esperar por 
 
 `Sequelize` é a instância do ORM.
 
+## Boilerplate
+
 Sem nenhuma lógica definida, você deve ter um boilerplate semelhante a este:
 
 ```javascript

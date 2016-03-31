@@ -1,13 +1,13 @@
 'use strict';
 
+const express = require('express');
+
 module.exports = function (app) {
   const controller = app.controllers.usuario;
+  const router = express.Router();
 
-  app
-  .route('/authenticate')
-  .post(controller.authenticate);
+  router.post('/authenticate', controller.authenticate);
+  router.post('/signup', controller.signup);
 
-  app
-  .route('/signup')
-  .post(controller.signup);
+  app.use('/usuario', router);
 };

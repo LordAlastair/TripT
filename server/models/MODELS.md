@@ -10,7 +10,7 @@ Sobre definição de models: [Sequelize.js - Models > Definition](http://docs.se
 
 Sobre como usar os models: [Sequelize.js - Models > Usage](http://docs.sequelizejs.com/en/latest/docs/models-usage/)
 
-## Boilerplate
+## Template
 
 ```javascript
 

@@ -4,8 +4,8 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    # command: sh -c 'npm install; npm run migrate; npm run seed; npm start'
-    command: npm start
+    command: sh -c 'npm install; npm run migrate; npm run seed; npm start'
+    # command: npm start
     volumes:
       - ./server:/server
     depends_on:
@@ -17,6 +17,7 @@ services:
     environment:
       - PORT=3000
       - NODE_ENV=development
+      - DOCKER_ENV=true
 
   db:
     image: kiasaki/alpine-postgres:latest

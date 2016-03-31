@@ -2,15 +2,17 @@
 
 Nesse diretório se encontram os controllers do projeto.
 
-## Boilerplate
+Para criar um novo controller, basta incluir o arquivo nessa pasta seguindo a estrutura do template.
 
-Existem varias formas de escrever um controller, porem por questões de padronização, facilidade de leitura, e simplicidade de código, esse estilo será o adotado:
+## Template
 
-- Com objetos no padrão ES5
+Existem várias formas de escrever um controller, porém por questões de padronização, facilidade de leitura e simplicidade de código, esse estilo será o adotado:
+
+- Exportando objetos no padrão ES5
 
 ```javascript
   'use strict';
-  
+
   module.exports = function(app) {
     var controller = {};
 

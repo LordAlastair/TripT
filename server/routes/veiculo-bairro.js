@@ -1,15 +1,16 @@
 'use strict';
 
+const express = require('express');
+
 module.exports = function (app) {
   const controller = app.controllers["veiculo-bairro"];
+  const router = express.Router();
 
-  app
-  .route('/veiculoBairro')
-  .get(controller.findAll)
-  .post(controller.create);
+  router.get('/', controller.findAll);
+  router.post('/', controller.create);
 
-  app
-  .route('/veiculoBairro/:id')
-  .get(controller.find)
-  .put(controller.update);
+  router.get('/:id', controller.find);
+  router.put('/:id', controller.update);
+
+  app.use('/veiculoBairro', router);
 };

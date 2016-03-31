@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "passw0rd",
+    "database": "vagalivre",
+    "host": "db",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin",
+    "password": "passw0rd",
+    "database": "vagalivre",
+    "host": "db",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

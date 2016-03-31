@@ -1,13 +1,13 @@
 'use strict';
 
+const express = require('express');
+
 module.exports = function (app) {
   const controller = app.controllers.bairro;
+  const router = express.Router();
 
-  app
-  .route('/bairro')
-  .get(controller.findAll);
+  router.get('/', controller.findAll);
+  router.get('/:id', controller.find);
 
-  app
-  .route('/bairro/:id')
-  .get(controller.find);
+  app.use('/bairro', router);
 };

@@ -29,20 +29,13 @@ module.exports = function(app) {
         return;
       }
 
-      usuario
-      .comparePassword(req.body.usu_ds_senha)
-      .then(function(matches) {
-        if (!matches) {
-          res.status(401).json({ message: 'Senha inválida.' });
-          return;
-        }
+      if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
+        res.status(401).json({ message: 'Senha inválida.' });
+        return;
+      }
 
-        res.json({
-          token: "JWT " + jwt.encode(usuario, security.secret)
-        });
-      })
-      .catch(function(err) {
-        res.status(403).json(err);
+      res.json({
+        token: "JWT " + jwt.encode(usuario, security.secret)
       });
     })
     .catch(function(err) {

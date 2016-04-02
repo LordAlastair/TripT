@@ -26,5 +26,5 @@ services:
     environment:
       - POSTGRES_PASSWORD=passw0rd
       - POSTGRES_USER=admin
-      - POSTGRES_DB=vagalivre
+      - POSTGRES_DB=tript
       - PGDATA=/var/lib/postgresql/data

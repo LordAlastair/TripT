@@ -1,7 +1,7 @@
 {
-  "name": "vagalivre-backend",
+  "name": "tript-backend",
   "version": "0.0.1",
-  "description": "Backend do serviço Vaga Livre",
+  "description": "Backend do serviço Tript",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

@@ -7,11 +7,17 @@ const security = require('../config/security.json');
 module.exports = function(app) {
   var controller = {};
 
-  controller.authenticate = function(req, res) {
+  function _validateRequest(req) {
     req.assert('usu_ds_email', 'Email é obrigatório.').notEmpty();
+    req.assert('usu_ds_senha', 'Senha é obrigatória.').notEmpty();
+    req.assert('usu_ds_email', `Formato do email (${req.body.usu_ds_email}) é inválido.`).isEmail();
     req.assert('usu_ds_senha', 'Senha deve ter entre 6 e 20 caractéres.').len(6, 20);
 
-    var errors = req.validationErrors();
+    return req.validationErrors();
+  }
+
+  controller.authenticate = function(req, res) {
+    var errors = _validateRequest(req);
 
     if (errors) {
       res.status(412).json(errors);
@@ -44,10 +50,7 @@ module.exports = function(app) {
   };
 
   controller.signup = function(req, res) {
-    req.assert('usu_ds_email', 'Email é obrigatório.').notEmpty();
-    req.assert('usu_ds_senha', 'Senha deve ter entre 6 e 20 caractéres.').len(6, 20);
-
-    var errors = req.validationErrors();
+    var errors = _validateRequest(req);
 
     if (errors) {
       res.status(412).json(errors);

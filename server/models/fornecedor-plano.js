@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
   var FornecedorPlano = sequelize.define('FornecedorPlano', {
-    fop_cd_Fornecedor_plano: {
+    fop_cd_fornecedor_plano: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -11,20 +11,20 @@ module.exports = function(sequelize, DataTypes) {
     },
     fop_ds_plano: {
       allowNull: false,
-      type: Sequelize.STRING
+      type: Sequelize.STRING(45)
     },
     fop_vl_plano: {
       allowNull: false,
       type: Sequelize.FLOAT(18, 2)
     },
-    fop_id_periodicidade: {
+    fop_cd_periodicidade: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
     fop_dt_expiracao: {
       type: Sequelize.DATE
     },
-    fop_id_rota: {
+    fop_cd_rota: {
       type: Sequelize.INTEGER
     },
     fop_bl_ativo: {

@@ -1,3 +1,4 @@
+const strings = require("../../config/strings.json");
 const app = require('../../config/app');
 const request = require('supertest');
 const chai = require('chai');
@@ -46,7 +47,7 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_email");
-      expect(error.msg).to.equal("Email é obrigatório.");
+      expect(error.msg).to.equal(strings.usuario.signup.errors.EMAIL_REQUIRED);
 
       done();
     });
@@ -67,7 +68,7 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_senha");
-      expect(error.msg).to.equal("Senha é obrigatória.");
+      expect(error.msg).to.equal(strings.usuario.signup.errors.PASSWORD_REQUIRED);
 
       expect(res.body).to.be.an('array');
 
@@ -93,11 +94,13 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_email");
-      expect(error.msg).to.equal(`Formato do email (${data.usu_ds_email}) é inválido.`);
+      expect(error.msg).to.equal(strings.usuario.signup.errors.INVALID_EMAIL_FORMAT);
 
       expect(res.body).to.be.an('array');
 
       done();
     });
   });
+
+  it("Deve retornar código 200 caso email e senha sejam validos");
 });

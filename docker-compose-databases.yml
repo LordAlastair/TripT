@@ -1,0 +1,23 @@
+version: '2'
+services:
+  development:
+    container_name: tript_db
+    image: kiasaki/alpine-postgres:latest
+    ports:
+      - 32776:5432
+    environment:
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=tript
+      - PGDATA=/var/lib/postgresql/data
+      
+  test:
+    container_name: tript_db_test
+    image: kiasaki/alpine-postgres:latest
+    ports:
+      - 32775:5432
+    environment:
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=tript
+      - PGDATA=/var/lib/postgresql/data

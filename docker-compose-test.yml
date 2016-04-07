@@ -1,11 +1,11 @@
 version: '2'
 services:
   webservice:
+    container_name: tript_webservice_test
     build:
       context: ./server
       dockerfile: Dockerfile
-    command: sh -c 'npm install; npm run migrate; npm run seed; npm test'
-    # command: npm test
+    command: sh -c 'npm install; npm run migrate; npm run seed; npm run testd'
     depends_on:
       - db
     volumes:
@@ -19,6 +19,7 @@ services:
       - DOCKER_ENV=true
 
   db:
+    container_name: tript_db_test
     image: kiasaki/alpine-postgres:latest
     ports:
       - 32775:5432

@@ -1,23 +1,24 @@
 'use strict';
 
-const jwt = require('jwt-simple');
 const models = require('../models');
+const strings = require("../config/strings.json");
+
+const jwt = require('jwt-simple');
 const security = require('../config/security.json');
 
 module.exports = function(app) {
   var controller = {};
 
-  function _validateRequest(req) {
-    req.assert('usu_ds_email', 'Email é obrigatório.').notEmpty();
-    req.assert('usu_ds_senha', 'Senha é obrigatória.').notEmpty();
-    req.assert('usu_ds_email', `Formato do email (${req.body.usu_ds_email}) é inválido.`).isEmail();
-    req.assert('usu_ds_senha', 'Senha deve ter entre 6 e 20 caractéres.').len(6, 20);
+  function _validate(req) {
+    req.assert('usu_ds_email', strings.usuario.signup.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_senha', strings.usuario.signup.errors.PASSWORD_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.signup.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     return req.validationErrors();
   }
 
   controller.authenticate = function(req, res) {
-    var errors = _validateRequest(req);
+    var errors = _validate(req);
 
     if (errors) {
       res.status(412).json(errors);
@@ -31,12 +32,16 @@ module.exports = function(app) {
     })
     .then(function(usuario) {
       if (!usuario) {
-        res.status(401).json({ message: 'Email não cadastrado.' });
+        res.status(400).json([
+          { msg: strings.usuario.authenticate.errors.EMAIL_NOT_FOUND }
+        ]);
         return;
       }
 
       if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
-        res.status(401).json({ message: 'Senha inválida.' });
+        res.status(400).json([
+          { msg: strings.usuario.authenticate.errors.INVALID_PASSWORD }
+        ]);
         return;
       }
 
@@ -50,7 +55,7 @@ module.exports = function(app) {
   };
 
   controller.signup = function(req, res) {
-    var errors = _validateRequest(req);
+    var errors = _validate(req);
 
     if (errors) {
       res.status(412).json(errors);
@@ -64,10 +69,14 @@ module.exports = function(app) {
       usu_ds_senha: req.body.usu_ds_senha
     })
     .then(function(usuario) {
-      res.status(201).json({ message: 'Usuário criado.' });
+      res.status(201).json([
+        { msg: strings.usuario.signup.success.USER_CREATED }
+      ]);
     })
     .catch(function(err) {
-      res.status(500).json({ message: 'Usuário já existe.' });
+      res.status(500).json([
+        { msg: strings.usuario.signup.errors.USER_ALREADY_EXISTS }
+      ]);
     });
   };
 

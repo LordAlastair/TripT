@@ -3,7 +3,7 @@
 const express = require('express');
 
 module.exports = function (app) {
-  const controller = app.controllers["fornecedor-plano"];
+  const controller = app.controllers["fornecedor-plano-vinculo"];
   const router = express.Router();
 
   router.get('/', controller.findAll);
@@ -11,6 +11,7 @@ module.exports = function (app) {
 
   router.get('/:id', controller.find);
   router.put('/:id', controller.update);
+  router.delete('/:id', controller.delete);
 
-  app.use('/fornecedorPlano', router);
+  app.use('/fornecedorPlanoVinculo', router);
 };

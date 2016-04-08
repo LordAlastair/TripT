@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     fop_vl_plano: {
       allowNull: false,
-      type: Sequelize.FLOAT(18, 2)
+      type: Sequelize.DECIMAL(18, 2)
     },
     fop_cd_periodicidade: {
       allowNull: false,
@@ -42,9 +42,6 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         FornecedorPlano.hasMany(models.FornecedorPlanoVinculo, {
           foreignKey: 'fpv_cd_plano',
-          allowNull: false
-        }, models.Cliente, {
-          foreignKey: 'cli_cd_plano',
           allowNull: false
         });
       }

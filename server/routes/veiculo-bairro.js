@@ -3,11 +3,14 @@
 const express = require('express');
 
 module.exports = function (app) {
-  const controller = app.controllers.bairro;
+  const controller = app.controllers["veiculo-bairro"];
   const router = express.Router();
 
   router.get('/', controller.findAll);
-  router.get('/:id', controller.find);
+  router.post('/', controller.create);
 
-  app.use('/bairro', router);
+  router.get('/:id', controller.find);
+  router.put('/:id', controller.update);
+
+  app.use('/veiculoBairro', router);
 };

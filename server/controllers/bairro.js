@@ -9,7 +9,11 @@ module.exports = function (app) {
     .Bairro
     .findById(req.params.id)
     .then(function(bairro) {
-      res.json(bairro);
+      if (bairro) {
+        res.json(bairro);
+      } else {
+        res.status(404).send();
+      }
     });
   };
 

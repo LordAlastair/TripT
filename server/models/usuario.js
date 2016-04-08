@@ -1,30 +1,34 @@
 'use strict';
+
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var ListaCaracteristica = sequelize.define('ListaCaracteristica', {
-    lic_cd_lista_caracteristica: {
+  var Usuario = sequelize.define('Usuario', {
+    usu_cd_usuario: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    lic_cd_van: {
+    usu_ds_email: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      unique: true,
+      type: Sequelize.STRING
     },
-    lic_cd_caracteristica: {
+    usu_ds_senha: {
       allowNull: false,
-      type: Sequelize.INTEGER
-    }
+      type: Sequelize.STRING
+    },
   }, {
     timestamps: false,
     classMethods: {
       associate: function(models) {
         // associations can be defined here
       }
-    }
+    },
+    instanceMethods: { },
+    hooks: { }
   });
 
-  return ListaCaracteristica;
+  return Usuario;
 };

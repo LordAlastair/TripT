@@ -2,19 +2,22 @@
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var Bairro = sequelize.define('Bairro', {
-    bai_cd_bairro: {
+  var VeiculoBairro = sequelize.define('VeiculoBairro', {
+    veb_cd_veiculo_bairro: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    bai_ds_bairro: {
+    veb_cd_veiculo: {
       allowNull: false,
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
+    },
+    veb_cd_bairro: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     }
-  },
-  {
+  }, {
     timestamps: false,
     classMethods: {
       associate: function(models) {
@@ -23,5 +26,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return Bairro;
+  return VeiculoBairro;
 };

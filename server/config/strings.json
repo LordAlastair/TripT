@@ -5,10 +5,12 @@
       "INVALID_EMAIL_FORMAT": "Email inválido.",
       "EMAIL_NOT_FOUND": "Email não cadastrado.",
       "INVALID_PASSWORD": "Senha inválida.",
-      "EMAIL_ALREADY_EXISTS": "Usuário já existe."
-  },
-  "success": {
-    "PASSWORD_CHANGED": "Senha alterada com sucesso.",
-    "USER_CREATED": "Usuário criado."
+      "EMAIL_ALREADY_EXISTS": "Usuário já existe.",
+      "PASSWORD_REQUIRED": "Senha é obrigatória."
+    },
+    "success": {
+      "PASSWORD_CHANGED": "Senha alterada com sucesso.",
+      "USER_CREATED": "Usuário criado."
+    }
   }
 }

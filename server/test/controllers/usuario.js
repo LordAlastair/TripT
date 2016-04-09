@@ -47,7 +47,7 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_email");
-      expect(error.msg).to.equal(strings.usuario.signup.errors.EMAIL_REQUIRED);
+      expect(error.msg).to.equal(strings.usuario.errors.EMAIL_REQUIRED);
 
       done();
     });
@@ -68,7 +68,7 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_senha");
-      expect(error.msg).to.equal(strings.usuario.signup.errors.PASSWORD_REQUIRED);
+      expect(error.msg).to.equal(strings.usuario.errors.PASSWORD_REQUIRED);
 
       expect(res.body).to.be.an('array');
 
@@ -94,7 +94,7 @@ describe("GET /usuario/signup", function() {
       var error = res.body[0];
 
       expect(error.param).to.equal("usu_ds_email");
-      expect(error.msg).to.equal(strings.usuario.signup.errors.INVALID_EMAIL_FORMAT);
+      expect(error.msg).to.equal(strings.usuario.errors.INVALID_EMAIL_FORMAT);
 
       expect(res.body).to.be.an('array');
 

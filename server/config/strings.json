@@ -1,40 +1,14 @@
 {
   "usuario": {
-    "recovery":{
-      "errors":{
-        "INVALID_EMAIL_FORMAT": "Email inválido.",
-        "EMAIL_NOT_FOUND": "Email não cadastrado.",
-        "EMAIL_REQUIRED": "Email é obrigatório."
-      }
-    },
-    "changepass": {
-      "erros":{
-        "EMAIL_REQUIRED": "Email é obrigatório.",
-        "INVALID_EMAIL_FORMAT": "Email inválido.",
-        "EMAIL_NOT_FOUND": "Email não cadastrado.",
-        "NEW_PASSWORD_REQUIRED": "Nova senha inválida.",
-        "INVALID_PASSWORD": "Senha inválida."
-      },
-      "sucess": {
-        "PASSWORD_CHANGED": "Senha alterada com sucesso."
-      }
-    },
-    "signup": {
-      "errors": {
-        "EMAIL_REQUIRED": "Email é obrigatório.",
-        "PASSWORD_REQUIRED": "Senha é obrigatória.",
-        "INVALID_EMAIL_FORMAT": "Formato do email é inválido.",
-        "USER_ALREADY_EXISTS": "Usuário já existe."
-      },
-      "success": {
-        "USER_CREATED": "Usuário criado."
-      }
-    },
-    "authenticate": {
-      "errors": {
-        "EMAIL_NOT_FOUND": "Email não cadastrado.",
-        "INVALID_PASSWORD": "Senha inválida."
-      }
-    }
+    "errors": {
+      "EMAIL_REQUIRED": "Email é obrigatório.",
+      "INVALID_EMAIL_FORMAT": "Email inválido.",
+      "EMAIL_NOT_FOUND": "Email não cadastrado.",
+      "INVALID_PASSWORD": "Senha inválida.",
+      "EMAIL_ALREADY_EXISTS": "Usuário já existe."
+  },
+  "success": {
+    "PASSWORD_CHANGED": "Senha alterada com sucesso.",
+    "USER_CREATED": "Usuário criado."
   }
 }

@@ -12,9 +12,9 @@ module.exports = function(app) {
   var controller = {};
 
   function _validate(req) {
-    req.assert('usu_ds_email', strings.usuario.signup.errors.EMAIL_REQUIRED).notEmpty();
-    req.assert('usu_ds_senha', strings.usuario.signup.errors.PASSWORD_REQUIRED).notEmpty();
-    req.assert('usu_ds_email', strings.usuario.signup.errors.INVALID_EMAIL_FORMAT).isEmail();
+    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_senha', strings.usuario.errors.PASSWORD_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     return req.validationErrors();
   }
@@ -35,14 +35,14 @@ module.exports = function(app) {
     .then(function(usuario) {
       if (!usuario) {
         res.status(400).json([
-          { msg: strings.usuario.authenticate.errors.EMAIL_NOT_FOUND }
+          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
         ]);
         return;
       }
 
       if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
         res.status(400).json([
-          { msg: strings.usuario.authenticate.errors.INVALID_PASSWORD }
+          { msg: strings.usuario.errors.INVALID_PASSWORD }
         ]);
         return;
       }
@@ -72,12 +72,12 @@ module.exports = function(app) {
     })
     .then(function(usuario) {
       res.status(201).json([
-        { msg: strings.usuario.signup.success.USER_CREATED }
+        { msg: strings.usuario.success.USER_CREATED }
       ]);
     })
     .catch(function(err) {
       res.status(500).json([
-        { msg: strings.usuario.signup.errors.USER_ALREADY_EXISTS }
+        { msg: strings.usuario.errors.USER_ALREADY_EXISTS }
       ]);
     });
   };
@@ -85,8 +85,8 @@ module.exports = function(app) {
   controller.recovery = function(req, res){
     // TEST => curl -v -X POST http://localhost:3000/usuario/recovery -d '{ "usu_ds_email": "shayron.aguiar@gmail.com" }' -H "Content-Type: application/json"
 
-    req.assert('usu_ds_email', strings.usuario.recovery.errors.EMAIL_REQUIRED).notEmpty();
-    req.assert('usu_ds_email', strings.usuario.recovery.errors.INVALID_EMAIL_FORMAT).isEmail();
+    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     var errors = req.validationErrors();
     if(errors){
@@ -103,7 +103,7 @@ module.exports = function(app) {
 
       if(!usuario){
         res.status(404).json([{
-          msg: strings.usuario.recovery.errors.EMAIL_NOT_FOUND
+          msg: strings.usuario.errors.EMAIL_NOT_FOUND
         }]);
         return;
       }
@@ -155,9 +155,9 @@ module.exports = function(app) {
 
 
       function _validate(req) {
-      req.assert('usu_ds_email', strings.usuario.changepass.errors.EMAIL_REQUIRED).notEmpty();
-      req.assert('usu_ds_email', strings.usuario.changepass.errors.INVALID_EMAIL_FORMAT).isEmail();
-      req.assert('usu_ds_nova_senha', strings.usuario.changepass.erros.NEW_PASSWORD_REQUIRED).notEmpty();
+      req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+      req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
+      req.assert('usu_ds_nova_senha', strings.usuario.erros.NEW_PASSWORD_REQUIRED).notEmpty();
 
         return req.validationErrors();
       }
@@ -180,14 +180,14 @@ module.exports = function(app) {
     .then(function(usuario) {
       if (!usuario) {
         res.status(400).json([
-          { msg: strings.usuario.changepass.EMAIL_NOT_FOUND }
+          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
         ]);
         return;
       }
 
       if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
         res.status(400).json([
-          { msg: strings.usuario.changepass.errors.INVALID_PASSWORD }
+          { msg: strings.usuario.errors.INVALID_PASSWORD }
         ]);
         return;
       }
@@ -207,7 +207,7 @@ module.exports = function(app) {
     })
     .then(function() {
       res.status(200).json([
-        { msg: strings.usuario.signup.success.PASSWORD_CHANGED }
+        { msg: strings.usuario.success.PASSWORD_CHANGED }
       ]);
     })
     .catch(function(err) {

@@ -9,6 +9,7 @@ module.exports = function (app) {
   router.post('/authenticate', controller.authenticate);
   router.post('/signup', controller.signup);
   router.post('/recovery', controller.recovery);
+  router.post('/changepass', controller.changepass);
 
   app.use('/usuario', router);
 };

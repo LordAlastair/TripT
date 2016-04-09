@@ -3,7 +3,20 @@
     "recovery":{
       "errors":{
         "INVALID_EMAIL_FORMAT": "Email inválido.",
-        "EMAIL_NOT_FOUND": "Email não cadastrado."
+        "EMAIL_NOT_FOUND": "Email não cadastrado.",
+        "EMAIL_REQUIRED": "Email é obrigatório."
+      }
+    },
+    "changepass": {
+      "erros":{
+        "EMAIL_REQUIRED": "Email é obrigatório.",
+        "INVALID_EMAIL_FORMAT": "Email inválido.",
+        "EMAIL_NOT_FOUND": "Email não cadastrado.",
+        "NEW_PASSWORD_REQUIRED": "Nova senha inválida.",
+        "INVALID_PASSWORD": "Senha inválida."
+      },
+      "sucess": {
+        "PASSWORD_CHANGED": "Senha alterada com sucesso."
       }
     },
     "signup": {

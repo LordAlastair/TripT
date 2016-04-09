@@ -85,6 +85,7 @@ module.exports = function(app) {
   controller.recovery = function(req, res){
     // TEST => curl -v -X POST http://localhost:3000/usuario/recovery -d '{ "usu_ds_email": "shayron.aguiar@gmail.com" }' -H "Content-Type: application/json"
 
+    req.assert('usu_ds_email', strings.usuario.recovery.errors.EMAIL_REQUIRED).notEmpty();
     req.assert('usu_ds_email', strings.usuario.recovery.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     var errors = req.validationErrors();
@@ -146,6 +147,72 @@ module.exports = function(app) {
     .catch(function(err) {
       res.status(500).json(err);
     });
+  }
+
+  controller.changepass = function(req, res){
+    var newPassword = req.body.usu_ds_nova_senha;
+
+
+      function _validate(req) {
+      req.assert('usu_ds_email', strings.usuario.changepass.errors.EMAIL_REQUIRED).notEmpty();
+      req.assert('usu_ds_email', strings.usuario.changepass.errors.INVALID_EMAIL_FORMAT).isEmail();
+      req.assert('usu_ds_nova_senha', strings.usuario.changepass.erros.NEW_PASSWORD_REQUIRED).notEmpty();
+
+        return req.validationErrors();
+      }
+
+      controller.authenticate = function(req, res) {
+        var errors = _validate(req);
+
+        if (errors) {
+          res.status(412).json(errors);
+          return;
+        }
+      }
+
+
+    models
+    .Usuario
+    .findOne({
+      where: { 'usu_ds_email': req.body.usu_ds_email }
+    })
+    .then(function(usuario) {
+      if (!usuario) {
+        res.status(400).json([
+          { msg: strings.usuario.changepass.EMAIL_NOT_FOUND }
+        ]);
+        return;
+      }
+
+      if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
+        res.status(400).json([
+          { msg: strings.usuario.changepass.errors.INVALID_PASSWORD }
+        ]);
+        return;
+      }
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+
+    models
+    .Usuario
+    .update({
+      usu_ds_senha: newPassword
+    }, {
+      where: {
+        usu_ds_email: req.body.usu_ds_email
+      }
+    })
+    .then(function() {
+      res.status(200).json([
+        { msg: strings.usuario.signup.success.PASSWORD_CHANGED }
+      ]);
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+
   }
 
   return controller;

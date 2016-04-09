@@ -150,6 +150,7 @@ module.exports = function(app) {
   }
 
   controller.changepass = function(req, res){
+    //TEST =>   curl -v -X POST http://localhost:3000/usuario/changepass -d '{ "usu_ds_email": "shayron.aguiar@gmail.com", "usu_ds_senha": "123456", "usu_ds_nova_senha": "123senhanova456" }' -H "Content-Type: application/json"
     var newPassword = req.body.usu_ds_nova_senha;
 
 

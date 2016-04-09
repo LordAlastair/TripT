@@ -89,6 +89,7 @@ module.exports = function(app) {
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     var errors = req.validationErrors();
+
     if(errors){
       res.status(412).json(errors);
       return;
@@ -124,7 +125,7 @@ module.exports = function(app) {
       })
       .then(function(usuario) {
         var transporter = nodemailer.createTransport('smtps://vali.develop%40gmail.com:vali2016@smtp.gmail.com');
-
+        console.log("transporting");
         var mailOptions = {
           from: '"Tript 👥" <vali.develop@gmail.com>', // sender address
           to: usuario.usu_ds_email, // list of receivers
@@ -135,9 +136,15 @@ module.exports = function(app) {
 
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-            return res.send(error);
+            res.status(500).json([
+              { msg: "Não foi possível enviar o email.", error: error }
+            ]);
+            return;
           }
-          res.send('Message sent: ' + info.response);
+
+          res.json([
+            { msg: 'Message sent: ' + info.response }
+          ]);
         });
       })
       .catch(function(err) {

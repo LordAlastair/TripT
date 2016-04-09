@@ -13,5 +13,5 @@ module.exports = function (app) {
   router.put('/:id', controller.update);
   router.delete('/:id', controller.delete);
 
-  app.use('/fornecedorPlanoVinculo', router);
+  app.use('/fornecedor-plano-vinculo', router);
 };

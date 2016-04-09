@@ -12,5 +12,5 @@ module.exports = function (app) {
   router.get('/:id', controller.find);
   router.put('/:id', controller.update);
 
-  app.use('/veiculoCaracteristica', router);
+  app.use('/veiculo-caracteristica', router);
 };

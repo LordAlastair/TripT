@@ -3,6 +3,8 @@
 const models = require('../models');
 const strings = require("../config/strings.json");
 
+const generator = require('generate-password');
+const nodemailer = require('nodemailer');
 const jwt = require('jwt-simple');
 const security = require('../config/security.json');
 
@@ -79,6 +81,72 @@ module.exports = function(app) {
       ]);
     });
   };
+
+  controller.recovery = function(req, res){
+    // TEST => curl -v -X POST http://localhost:3000/usuario/recovery -d '{ "usu_ds_email": "shayron.aguiar@gmail.com" }' -H "Content-Type: application/json"
+
+    req.assert('usu_ds_email', strings.usuario.recovery.errors.INVALID_EMAIL_FORMAT).isEmail();
+
+    var errors = req.validationErrors();
+    if(errors){
+      res.status(412).json(errors);
+      return;
+    }
+
+    models
+    .Usuario
+    .findOne({
+      where: { 'usu_ds_email': req.body.usu_ds_email }
+    })
+    .then(function(usuario) {
+
+      if(!usuario){
+        res.status(404).json([{
+          msg: strings.usuario.recovery.errors.EMAIL_NOT_FOUND
+        }]);
+        return;
+      }
+
+      var newPassword = generator.generate({
+        length: 5,
+        numbers: true
+      });
+
+      models
+      .Usuario
+      .update({
+        usu_ds_senha: newPassword
+      }, {
+        where: {
+          usu_ds_email: usuario.usu_ds_email
+        }
+      })
+      .then(function(usuario) {
+        var transporter = nodemailer.createTransport('smtps://vali.develop%40gmail.com:vali2016@smtp.gmail.com');
+
+        var mailOptions = {
+          from: '"Tript 👥" <vali.develop@gmail.com>', // sender address
+          to: usuario.usu_ds_email, // list of receivers
+          subject: 'TripT - Recuperação de senha ✔', // Subject line
+          text: 'Hello TESTER world 🐴', // plaintext body
+          html: '<b>Sua nova senha gerada pelo sistema 🐴</b>'+newPassword // html body
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+            return res.send(error);
+          }
+          res.send('Message sent: ' + info.response);
+        });
+      })
+      .catch(function(err) {
+        res.status(500).json(err);
+      });
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
+  }
 
   return controller;
 };

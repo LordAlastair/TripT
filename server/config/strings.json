@@ -10,7 +10,8 @@
     },
     "success": {
       "PASSWORD_CHANGED": "Senha alterada com sucesso.",
-      "USER_CREATED": "Usuário criado."
+      "USER_CREATED": "Usuário criado.",
+      "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail."
     }
   }
 }

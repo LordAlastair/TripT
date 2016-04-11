@@ -85,13 +85,21 @@ module.exports = function(app) {
   controller.recovery = function(req, res){
     // TEST => curl -v -X POST http://localhost:3000/usuario/recovery -d '{ "usu_ds_email": "shayron.aguiar@gmail.com" }' -H "Content-Type: application/json"
 
+
+    function _validate(req) {
     req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
-    var errors = req.validationErrors();
-    if(errors){
-      res.status(412).json(errors);
-      return;
+      return req.validationErrors();
+    }
+
+    controller.authenticate = function(req, res) {
+      var errors = _validate(req);
+
+      if (errors) {
+        res.status(412).json(errors);
+        return;
+      }
     }
 
     models
@@ -127,7 +135,7 @@ module.exports = function(app) {
 
         var mailOptions = {
           from: '"Tript 👥" <vali.develop@gmail.com>', // sender address
-          to: usuario.usu_ds_email, // list of receivers
+          to: req.body.usu_ds_email, // list of receivers
           subject: 'TripT - Recuperação de senha ✔', // Subject line
           text: 'Hello TESTER world 🐴', // plaintext body
           html: '<b>Sua nova senha gerada pelo sistema 🐴</b>'+newPassword // html body
@@ -137,7 +145,7 @@ module.exports = function(app) {
           if(error){
             return res.send(error);
           }
-          res.send('Message sent: ' + info.response);
+          res.status(200).json(strings.usuario.success.PASSWORD_RECOVERY + info.response)
         });
       })
       .catch(function(err) {

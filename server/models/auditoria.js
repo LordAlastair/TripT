@@ -16,8 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     aud_ds_alteracao: {
       allowNull: false,
       type: Sequelize.STRING(45)
-    },
-    
+    }, 
     aud_cd_usuario: {
       allowNull: false,
       type: Sequelize.STRING(45)

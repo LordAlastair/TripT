@@ -143,7 +143,9 @@ module.exports = function(app) {
 
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-            return res.send(error);
+            res.status(500).json([{
+              msg: 'Não foi possível enviar o email.'
+            }]);
           }
           res.status(200).json(strings.usuario.success.PASSWORD_RECOVERY + info.response)
         });
@@ -162,23 +164,22 @@ module.exports = function(app) {
     var newPassword = req.body.usu_ds_nova_senha;
 
 
-      function _validate(req) {
-      req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
-      req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
-      req.assert('usu_ds_nova_senha', strings.usuario.erros.NEW_PASSWORD_REQUIRED).notEmpty();
+    function _validate(req) {
+    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
+    req.assert('usu_ds_nova_senha', strings.usuario.erros.NEW_PASSWORD_REQUIRED).notEmpty();
 
-        return req.validationErrors();
+      return req.validationErrors();
+    }
+
+    controller.authenticate = function(req, res) {
+      var errors = _validate(req);
+
+      if (errors) {
+        res.status(412).json(errors);
+        return;
       }
-
-      controller.authenticate = function(req, res) {
-        var errors = _validate(req);
-
-        if (errors) {
-          res.status(412).json(errors);
-          return;
-        }
-      }
-
+    }
 
     models
     .Usuario

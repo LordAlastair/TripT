@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     aud_ds_modificacao: {
       allowNull: false,
-      type: Sequelize.STRING(45)
+      type: Sequelize.STRING(1000)
     }
   }, {
     timestamps: false,

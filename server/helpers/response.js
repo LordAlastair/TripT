@@ -1,7 +1,7 @@
 'use strict';
 
 class Response {
-  construct(msg) {
+  constructor(msg) {
     this.msg = msg;
   }
 }

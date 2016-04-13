@@ -2,9 +2,7 @@
 
 const Response = require('./response');
 const ErrorResponse = require('./error-response');
-
-const jwt = require('jwt-simple');
-const security = require('../config/security.json');
+const TokenResponse = require('./token-response');
 
 class ResponseHandler {
   static getResponse(msg) {
@@ -16,10 +14,7 @@ class ResponseHandler {
   }
 
   static getTokenResponse(usuario) {
-    const prefix = "JWT ";
-    var token = prefix + jwt.encode(usuario, security.secret);
-
-    return { token };
+    return new TokenResponse(usuario);
   }
 }
 

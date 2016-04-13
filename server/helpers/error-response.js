@@ -1,9 +1,9 @@
 'use strict';
 
 class ErrorResponse {
-  construct(msg, error) {
+  constructor(msg, error) {
     this.msg = msg;
-    this.error = error;
+    if (error) this.error = error;
   }
 }
 

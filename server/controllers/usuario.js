@@ -64,13 +64,31 @@ module.exports = function(app) {
       return;
     }
 
-    models
-    .Usuario
-    .create({
+    var usuario = {
       usu_ds_email: req.body.usu_ds_email,
       usu_ds_senha: req.body.usu_ds_senha
-    })
+    };
+
+    models
+    .Usuario
+    .create(usuario)
     .then(function(usuario) {
+      models
+      .Auditoria
+      .create({
+        aud_ds_tabela: "Usuario",
+        aud_ds_alteracao: strings.usuario.success.USER_CREATED, 
+        aud_cd_usuario: 0,
+        aud_ts_modificacao: new Date(),
+        aud_ds_modificacao: JSON.stringify(usuario)    
+      })
+      .then(function(auditoria) {
+        console.log("Auditoria de usuário criado.");
+      })
+      .catch(function(error) {
+        console.log(error);  
+      });
+      
       res.status(201).json([
         { msg: strings.usuario.success.USER_CREATED }
       ]);

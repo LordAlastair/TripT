@@ -6,7 +6,11 @@
       "EMAIL_NOT_FOUND": "Email não cadastrado.",
       "INVALID_PASSWORD": "Senha inválida.",
       "EMAIL_ALREADY_EXISTS": "Usuário já existe.",
-      "PASSWORD_REQUIRED": "Senha é obrigatória."
+      "PASSWORD_REQUIRED": "Senha é obrigatória.",
+      "CANT_FIND_USER": "Não foi possível encontrar usuário.",
+      "CANT_SEND_EMAIL": "Não foi possível enviar email.",
+      "CANT_UPDATE_USER": "Não foi possível atualizar usuário.",
+      "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário."
     },
     "success": {
       "PASSWORD_CHANGED": "Senha alterada com sucesso.",

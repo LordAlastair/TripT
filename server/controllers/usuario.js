@@ -1,12 +1,11 @@
 'use strict';
 
-const models = require('../models');
-const strings = require("../config/strings.json");
-
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
-const jwt = require('jwt-simple');
-const security = require('../config/security.json');
+
+const models = require('../models');
+const strings = require("../config/strings.json");
+const ResponseHandler = require('../helpers/response-handler');
 
 module.exports = function(app) {
   var controller = {};
@@ -17,7 +16,7 @@ module.exports = function(app) {
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
     var errors = req.validationErrors();
-    
+
     if (errors) {
       res.status(412).json(errors);
       return;
@@ -30,26 +29,20 @@ module.exports = function(app) {
     })
     .then(function(usuario) {
       if (!usuario) {
-        res.status(400).json([
-          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
-        ]);
+        res.status(400).json(ResponseHandler.getErrorResponse(strings.usuario.errors.EMAIL_NOT_FOUND));
         return;
       }
 
       if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
-        res.status(400).json([
-          { msg: strings.usuario.errors.INVALID_PASSWORD }
-        ]);
+        res.status(400).json(ResponseHandler.getErrorResponse(strings.usuario.errors.INVALID_PASSWORD));
         return;
       }
 
-      res.json({
-        token: "JWT " + jwt.encode(usuario, security.secret)
-      });
+      res.status(200).json(ResponseHandler.getTokenResponse(usuario));
     })
     .catch(function(err) {
-      res.json(err);
-    })
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER), err);
+    });
   };
 
   controller.signup = function(req, res) {
@@ -77,26 +70,22 @@ module.exports = function(app) {
       .Auditoria
       .create({
         aud_ds_tabela: "Usuario",
-        aud_ds_alteracao: strings.usuario.success.USER_CREATED, 
+        aud_ds_alteracao: strings.usuario.success.USER_CREATED,
         aud_cd_usuario: 0,
         aud_ts_modificacao: new Date(),
-        aud_ds_modificacao: JSON.stringify(usuario)    
+        aud_ds_modificacao: JSON.stringify(usuario)
       })
       .then(function(auditoria) {
         console.log("Auditoria de usuário criado.");
       })
       .catch(function(error) {
-        console.log(error);  
+        console.log(error);
       });
-      
-      res.status(201).json([
-        { msg: strings.usuario.success.USER_CREATED }
-      ]);
+
+      res.status(201).json(ResponseHandler.getResponse(strings.usuario.success.USER_CREATED));
     })
     .catch(function(err) {
-      res.status(500).json([
-        { msg: strings.usuario.errors.USER_ALREADY_EXISTS }
-      ]);
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.USER_ALREADY_EXISTS, err));
     });
   };
 
@@ -120,15 +109,12 @@ module.exports = function(app) {
     })
     .then(function(usuario) {
       if (!usuario) {
-        res.status(404).json([
-          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
-        ]);
-
+        res.status(404).json(ResponseHandler.getErrorResponse(strings.usuario.errors.EMAIL_NOT_FOUND));
         return;
       }
 
       var newPassword = generator.generate({
-        length: 5,
+        length: 8,
         numbers: true
       });
 
@@ -145,31 +131,27 @@ module.exports = function(app) {
         var transporter = nodemailer.createTransport('smtps://vali.develop%40gmail.com:vali2016@smtp.gmail.com');
 
         var mailOptions = {
-          from: '"Tript 👥" <vali.develop@gmail.com>', // sender address
-          to: req.body.usu_ds_email, // list of receivers
-          subject: 'TripT - Recuperação de senha ✔', // Subject line
-          text: 'Hello TESTER world 🐴', // plaintext body
-          html: '<b>Sua nova senha gerada pelo sistema 🐴</b>'+newPassword // html body
+          from: '"Tript" <vali.develop@gmail.com>',
+          to: req.body.usu_ds_email,
+          subject: 'TripT - Recuperação de senha',
+          html: `<b>Sua nova senha gerada pelo sistema:</b> ${newPassword}`
         };
 
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
-            res.status(500).json([
-              { msg: "Não foi possível enviar o email.", error }
-            ]);
-
+            res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_SEND_EMAIL, error));
             return;
           }
 
-          res.status(200).json(strings.usuario.success.PASSWORD_RECOVERY + info.response)
+          res.status(200).json(ResponseHandler.getResponse(strings.usuario.success.PASSWORD_RECOVERY))
         });
       })
-      .catch(function(err) {
-        res.status(500).json(err);
+      .catch(function(error) {
+        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_UPDATE_USER, error));
       });
     })
-    .catch(function(err) {
-      res.status(500).json(err);
+    .catch(function(error) {
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER, error));
     });
   }
 
@@ -186,8 +168,6 @@ module.exports = function(app) {
       return;
     }
 
-    var newPassword = req.body.usu_ds_nova_senha;
-    
     models
     .Usuario
     .findOne({
@@ -195,39 +175,31 @@ module.exports = function(app) {
     })
     .then(function(usuario) {
       if (!usuario) {
-        res.status(400).json([
-          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
-        ]);
+        res.status(400).json(ResponseHandler.getErrorResponse(strings.usuario.errors.EMAIL_NOT_FOUND));
         return;
       }
 
       if (usuario.usu_ds_senha !== req.body.usu_ds_senha) {
-        res.status(400).json([
-          { msg: strings.usuario.errors.INVALID_PASSWORD }
-        ]);
+        res.status(400).json(ResponseHandler.getErrorResponse(strings.usuario.errors.INVALID_PASSWORD));
         return;
       }
-    })
-    .catch(function(err) {
-      res.json(err);
-    })
 
-    models
-    .Usuario
-    .update({
-      usu_ds_senha: newPassword
-    }, {
-      where: {
-        usu_ds_email: req.body.usu_ds_email
-      }
+      models
+      .Usuario
+      .update({
+        usu_ds_senha: req.body.usu_ds_nova_senha
+      },{
+        where: { usu_ds_email: req.body.usu_ds_email }
+      })
+      .then(function() {
+        res.status(200).json(ResponseHandler.getResponse(strings.usuario.success.PASSWORD_CHANGED));
+      })
+      .catch(function(error) {
+        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_CHANGE_PASSWORD, error));
+      });
     })
-    .then(function() {
-      res.status(200).json([
-        { msg: strings.usuario.success.PASSWORD_CHANGED }
-      ]);
-    })
-    .catch(function(err) {
-      res.json(err);
+    .catch(function(error) {
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER, error));
     })
   }
 

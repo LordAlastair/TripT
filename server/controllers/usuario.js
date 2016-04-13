@@ -11,17 +11,13 @@ const security = require('../config/security.json');
 module.exports = function(app) {
   var controller = {};
 
-  function _validate(req) {
+  controller.authenticate = function(req, res) {
     req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
     req.assert('usu_ds_senha', strings.usuario.errors.PASSWORD_REQUIRED).notEmpty();
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
 
-    return req.validationErrors();
-  }
-
-  controller.authenticate = function(req, res) {
-    var errors = _validate(req);
-
+    var errors = req.validationErrors();
+    
     if (errors) {
       res.status(412).json(errors);
       return;
@@ -30,7 +26,7 @@ module.exports = function(app) {
     models
     .Usuario
     .findOne({
-      where: { 'usu_ds_email': req.body.usu_ds_email }
+      where: { usu_ds_email: req.body.usu_ds_email }
     })
     .then(function(usuario) {
       if (!usuario) {
@@ -57,20 +53,42 @@ module.exports = function(app) {
   };
 
   controller.signup = function(req, res) {
-    var errors = _validate(req);
+    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_senha', strings.usuario.errors.PASSWORD_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
+
+    var errors = req.validationErrors();
 
     if (errors) {
       res.status(412).json(errors);
       return;
     }
 
-    models
-    .Usuario
-    .create({
+    var usuario = {
       usu_ds_email: req.body.usu_ds_email,
       usu_ds_senha: req.body.usu_ds_senha
-    })
+    };
+
+    models
+    .Usuario
+    .create(usuario)
     .then(function(usuario) {
+      models
+      .Auditoria
+      .create({
+        aud_ds_tabela: "Usuario",
+        aud_ds_alteracao: strings.usuario.success.USER_CREATED, 
+        aud_cd_usuario: 0,
+        aud_ts_modificacao: new Date(),
+        aud_ds_modificacao: JSON.stringify(usuario)    
+      })
+      .then(function(auditoria) {
+        console.log("Auditoria de usuário criado.");
+      })
+      .catch(function(error) {
+        console.log(error);  
+      });
+      
       res.status(201).json([
         { msg: strings.usuario.success.USER_CREATED }
       ]);
@@ -90,7 +108,7 @@ module.exports = function(app) {
 
     var errors = req.validationErrors();
 
-    if(errors){
+    if (errors) {
       res.status(412).json(errors);
       return;
     }
@@ -101,11 +119,11 @@ module.exports = function(app) {
       where: { 'usu_ds_email': req.body.usu_ds_email }
     })
     .then(function(usuario) {
+      if (!usuario) {
+        res.status(404).json([
+          { msg: strings.usuario.errors.EMAIL_NOT_FOUND }
+        ]);
 
-      if(!usuario){
-        res.status(404).json([{
-          msg: strings.usuario.errors.EMAIL_NOT_FOUND
-        }]);
         return;
       }
 
@@ -125,26 +143,25 @@ module.exports = function(app) {
       })
       .then(function(usuario) {
         var transporter = nodemailer.createTransport('smtps://vali.develop%40gmail.com:vali2016@smtp.gmail.com');
-        console.log("transporting");
+
         var mailOptions = {
           from: '"Tript 👥" <vali.develop@gmail.com>', // sender address
-          to: usuario.usu_ds_email, // list of receivers
+          to: req.body.usu_ds_email, // list of receivers
           subject: 'TripT - Recuperação de senha ✔', // Subject line
           text: 'Hello TESTER world 🐴', // plaintext body
           html: '<b>Sua nova senha gerada pelo sistema 🐴</b>'+newPassword // html body
         };
 
         transporter.sendMail(mailOptions, function(error, info){
-          if(error){
+          if (error) {
             res.status(500).json([
-              { msg: "Não foi possível enviar o email.", error: error }
+              { msg: "Não foi possível enviar o email.", error }
             ]);
+
             return;
           }
 
-          res.json([
-            { msg: 'Message sent: ' + info.response }
-          ]);
+          res.status(200).json(strings.usuario.success.PASSWORD_RECOVERY + info.response)
         });
       })
       .catch(function(err) {
@@ -158,31 +175,23 @@ module.exports = function(app) {
 
   controller.changepass = function(req, res){
     //TEST =>   curl -v -X POST http://localhost:3000/usuario/changepass -d '{ "usu_ds_email": "shayron.aguiar@gmail.com", "usu_ds_senha": "123456", "usu_ds_nova_senha": "123senhanova456" }' -H "Content-Type: application/json"
+    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
+    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
+    req.assert('usu_ds_nova_senha', strings.usuario.erros.NEW_PASSWORD_REQUIRED).notEmpty();
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+      res.status(412).json(errors);
+      return;
+    }
+
     var newPassword = req.body.usu_ds_nova_senha;
-
-
-      function _validate(req) {
-      req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
-      req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
-      req.assert('usu_ds_nova_senha', strings.usuario.erros.NEW_PASSWORD_REQUIRED).notEmpty();
-
-        return req.validationErrors();
-      }
-
-      controller.authenticate = function(req, res) {
-        var errors = _validate(req);
-
-        if (errors) {
-          res.status(412).json(errors);
-          return;
-        }
-      }
-
-
+    
     models
     .Usuario
     .findOne({
-      where: { 'usu_ds_email': req.body.usu_ds_email }
+      where: { usu_ds_email: req.body.usu_ds_email }
     })
     .then(function(usuario) {
       if (!usuario) {
@@ -220,7 +229,6 @@ module.exports = function(app) {
     .catch(function(err) {
       res.json(err);
     })
-
   }
 
   return controller;

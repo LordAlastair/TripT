@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 
 const models = require('../models');
 const strings = require("../config/strings.json");
+
 const ResponseHandler = require('../helpers/response-handler');
 
 module.exports = function(app) {
@@ -53,7 +54,7 @@ module.exports = function(app) {
     var errors = req.validationErrors();
 
     if (errors) {
-      res.status(412).json(errors);
+      res.status(412).json(ResponseHandler.getErrorResponse(errors));
       return;
     }
 
@@ -66,22 +67,6 @@ module.exports = function(app) {
     .Usuario
     .create(usuario)
     .then(function(usuario) {
-      models
-      .Auditoria
-      .create({
-        aud_ds_tabela: "Usuario",
-        aud_ds_alteracao: strings.usuario.success.USER_CREATED,
-        aud_cd_usuario: 0,
-        aud_ts_modificacao: new Date(),
-        aud_ds_modificacao: JSON.stringify(usuario)
-      })
-      .then(function(auditoria) {
-        console.log("Auditoria de usuário criado.");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
       res.status(201).json(ResponseHandler.getResponse(strings.usuario.success.USER_CREATED));
     })
     .catch(function(err) {

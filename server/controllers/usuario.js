@@ -1,12 +1,12 @@
 'use strict';
 
 const generator = require('generate-password');
-const nodemailer = require('nodemailer');
 
 const models = require('../models');
 const strings = require("../config/strings.json");
 
 const ResponseHandler = require('../helpers/response-handler');
+const MailHelper = require('../helpers/mail-helper');
 
 module.exports = function(app) {
   var controller = {};
@@ -54,7 +54,7 @@ module.exports = function(app) {
     var errors = req.validationErrors();
 
     if (errors) {
-      res.status(412).json(ResponseHandler.getErrorResponse(errors));
+      res.status(412).json(errors);
       return;
     }
 
@@ -113,22 +113,17 @@ module.exports = function(app) {
         }
       })
       .then(function(usuario) {
-        var transporter = nodemailer.createTransport('smtps://vali.develop%40gmail.com:vali2016@smtp.gmail.com');
-
-        var mailOptions = {
-          from: '"Tript" <vali.develop@gmail.com>',
+        MailHelper
+        .send({
           to: req.body.usu_ds_email,
           subject: 'TripT - Recuperação de senha',
           html: `<b>Sua nova senha gerada pelo sistema:</b> ${newPassword}`
-        };
-
-        transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-            res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_SEND_EMAIL, error));
-            return;
-          }
-
+        })
+        .then(function(info) {
           res.status(200).json(ResponseHandler.getResponse(strings.usuario.success.PASSWORD_RECOVERY))
+        })
+        .catch(function(error) {
+          res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_SEND_EMAIL, error));
         });
       })
       .catch(function(error) {
@@ -185,7 +180,7 @@ module.exports = function(app) {
     })
     .catch(function(error) {
       res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER, error));
-    })
+    });
   }
 
   return controller;

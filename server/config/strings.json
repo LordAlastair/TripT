@@ -17,5 +17,9 @@
       "USER_CREATED": "Usuário criado.",
       "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail."
     }
+  },
+  "veiculo": {
+    "errors": {},
+    "success": {}
   }
 }

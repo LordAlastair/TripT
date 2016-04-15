@@ -2,6 +2,8 @@
 
 const models = require('../models');
 
+const ResponseHandler = require('../helpers/response-handler');
+
 module.exports = function (app) {
   var controller = {};
 
@@ -60,8 +62,22 @@ module.exports = function (app) {
         vei_cd_veiculo: req.params.id
       }
     })
-    .then(function(veiculo) {
-      res.json(veiculo);
+    .then(function() {
+      models
+      .Veiculo
+      .findById(req.params.id, {
+        include: [
+          { all: true }
+        ]
+      })
+      .then(function(veiculo) {
+        if (!veiculo) {
+          res.status(404).end();
+          return;
+        }
+
+        res.json(veiculo);
+      });
     })
     .catch(function(error) {
       res.status(412).json(error);

@@ -43,7 +43,7 @@ module.exports = function(app) {
       .FornecedorPlano
       .update(req.body, {
         where: {
-          fop_cd_Fornecedor_plano: req.params.id
+          fop_cd_fornecedor_plano: req.params.id
         }
       })
       .then(function(fornecedorPlano) {

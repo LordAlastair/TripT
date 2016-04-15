@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    fop_cd_fornecedor: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
     fop_ds_plano: {
       allowNull: false,
       type: Sequelize.STRING(45)
@@ -16,10 +20,6 @@ module.exports = function(sequelize, DataTypes) {
     fop_vl_plano: {
       allowNull: false,
       type: Sequelize.DECIMAL(18, 2)
-    },
-    fop_cd_periodicidade: {
-      allowNull: false,
-      type: Sequelize.INTEGER
     },
     fop_dt_expiracao: {
       type: Sequelize.DATE
@@ -41,7 +41,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         FornecedorPlano.hasMany(models.FornecedorPlanoVinculo, {
-          foreignKey: 'fpv_cd_plano',
+          foreignKey: 'fpv_cd_fornecedor_plano_vinculo',
+          allowNull: false
+        }, models.Fornecedor, {
+          foreignKey: 'for_cd_fornecedor',
           allowNull: false
         });
       }

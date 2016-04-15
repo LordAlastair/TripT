@@ -6,28 +6,28 @@ module.exports = function(app) {
 
   controller.find = function(req, res) {
     models
-      .FornecedorPlanoVinculo
+      .SolicitacaoVinculo
       .findById(req.params.id)
-      .then(function(fornecedorPlanoVinculo) {
-        res.json(fornecedorPlanoVinculo);
+      .then(function(solicitacaoVinculo) {
+        res.json(solicitacaoVinculo);
       });
   };
 
   controller.findAll = function(req, res) {
     models
-      .FornecedorPlanoVinculo
+      .SolicitacaoVinculo
       .findAll()
-      .then(function(fornecedorPlanoVinculos) {
-        res.json(fornecedorPlanoVinculos);
+      .then(function(solicitacaoVinculos) {
+        res.json(solicitacaoVinculos);
       });
   };
 
   controller.create = function(req, res) {
     models
-      .FornecedorPlanoVinculo
+      .SolicitacaoVinculo
       .create(req.body)
-      .then(function(fornecedorPlanoVinculo) {
-        res.json(fornecedorPlanoVinculo);
+      .then(function(solicitacaoVinculo) {
+        res.json(solicitacaoVinculo);
       })
       .catch(function(error) {
         res.status(500).json(error);
@@ -36,14 +36,14 @@ module.exports = function(app) {
 
   controller.update = function(req, res) {
     models
-      .FornecedorPlanoVinculo
+      .SolicitacaoVinculo
       .update(req.body, {
         where: {
-          fpv_cd_fornecedor_plano_vinculo: req.params.id
+          sov_cd_solicitacao_vinculo: req.params.id
         }
       })
-      .then(function(fornecedorPlanoVinculo) {
-        res.json(fornecedorPlanoVinculo);
+      .then(function(solicitacaoVinculo) {
+        res.json(solicitacaoVinculo);
       })
       .catch(function(error) {
         res.status(500).json(error);
@@ -52,14 +52,14 @@ module.exports = function(app) {
 
   controller.delete = function(req, res) {
     models
-      .FornecedorPlanoVinculo
+      .SolicitacaoVinculo
       .delete(req.body, {
         where: {
-          fpv_cd_fornecedor_plano_vinculo: req.params.id
+          sov_cd_solicitacao_vinculo: req.params.id
         }
       })
-      .then(function(fornecedorPlanoVinculo) {
-        res.json(fornecedorPlanoVinculo);
+      .then(function(solicitacaoVinculo) {
+        res.json(solicitacaoVinculo);
       })
       .catch(function(error) {
         res.status(500).json(error);

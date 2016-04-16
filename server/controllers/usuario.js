@@ -160,6 +160,8 @@ module.exports = function(app) {
 
     req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
+    req.assert('usu_ds_nova_senha', strings.usuario.errors.NEW_PASSWOR_REQUIRED).notEmpty();
+
 
     var errors = req.validationErrors();
 

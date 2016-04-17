@@ -11,7 +11,8 @@
       "CANT_FIND_USER": "Não foi possível encontrar usuário.",
       "CANT_SEND_EMAIL": "Não foi possível enviar email.",
       "CANT_UPDATE_USER": "Não foi possível atualizar usuário.",
-      "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário."
+      "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário.",
+      "NEW_PASSWOR_REQUIRED": "Nova senha obrigatória."
     },
     "success": {
       "PASSWORD_CHANGED": "Senha alterada com sucesso.",

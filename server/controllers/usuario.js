@@ -139,10 +139,12 @@ module.exports = function(app) {
 
   controller.changepass = function(req, res) {
     //TEST =>   curl -v -X POST http://localhost:3000/usuario/changepass -d '{ "usu_ds_email": "shayron.aguiar@gmail.com", "usu_ds_senha": "123456", "usu_ds_nova_senha": "123senhanova456" }' -H "Content-Type: application/json"
+
     req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
     req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
     req.assert('usu_ds_senha', strings.usuario.errors.PASSWORD_REQUIRED).notEmpty();
     req.assert('usu_ds_nova_senha', strings.usuario.errors.NEW_PASSWORD_REQUIRED).notEmpty();
+
 
     var errors = req.validationErrors();
 

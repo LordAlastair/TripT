@@ -2,7 +2,6 @@
 https://nodejs.org/en/download/
 https://git-for-windows.github.io/
 
-
 Git
 #Clonando o projeto num repositorio local :
 #OBS: Vai lhe pedir os seus dados de login no github pois e um projeto privado e sua conta tem que estar vinculada ao projeto!

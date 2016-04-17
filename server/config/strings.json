@@ -7,6 +7,7 @@
       "INVALID_PASSWORD": "Senha inválida.",
       "EMAIL_ALREADY_EXISTS": "Usuário já existe.",
       "PASSWORD_REQUIRED": "Senha é obrigatória.",
+      "NEW_PASSWORD_REQUIRED": "Senha nova é obrigatória.",
       "CANT_FIND_USER": "Não foi possível encontrar usuário.",
       "CANT_SEND_EMAIL": "Não foi possível enviar email.",
       "CANT_UPDATE_USER": "Não foi possível atualizar usuário.",
@@ -17,5 +18,9 @@
       "USER_CREATED": "Usuário criado.",
       "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail."
     }
+  },
+  "veiculo": {
+    "errors": {},
+    "success": {}
   }
 }

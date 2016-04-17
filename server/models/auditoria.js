@@ -30,11 +30,8 @@ module.exports = function(sequelize, DataTypes) {
       type: Sequelize.STRING(2500)
     }
   }, {
-    timestamps: false,
-    classMethods: {
-      associate: function(models) {
-      }
-    }
+    timestamps: false
   });
+  
   return Auditoria;
 };

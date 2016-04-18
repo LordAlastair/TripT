@@ -29,11 +29,12 @@ module.exports = function (app) {
   };
 
   controller.findAll = function(req, res) {
-    console.log(req.user.usu_cd_usuario);
-
     models
     .Veiculo
     .findAll({
+      where: {
+        vei_cd_usuario: req.user.usu_cd_usuario
+      },
       include: [
         { all: true }
       ]
@@ -56,6 +57,8 @@ module.exports = function (app) {
       res.status(412).json(errors);
       return;
     }
+
+    req.body.vei_cd_usuario = req.user.usu_cd_usuario;
 
     models
     .Veiculo

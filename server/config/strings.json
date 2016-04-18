@@ -21,7 +21,11 @@
     }
   },
   "veiculo": {
-    "errors": {},
+    "errors": {
+      "VEI_QT_VAGAS_REQUIRED": "Quantidade de vagas é obrigatório.",
+      "VEI_DS_DER_REQUIRED": "Registro DER é obrigatório.",
+      "VEI_DS_PLACA_REQUIRED": "Placa do veículo é obrigatória."
+    },
     "success": {}
   }
 }

@@ -103,5 +103,33 @@ module.exports = function (app) {
     });
   };
 
+  controller.delete = function(req, res) {
+    models
+    .Veiculo
+    .findById(req.params.id, {
+      where: {
+        vei_cd_usuario: req.user.usu_cd_usuario
+      }
+    })
+    .then(function(veiculo) {
+      if (!veiculo) {
+        res.status(404).json(ResponseHandler.getErrorResponse(strings.veiculo.errors.VEICULO_NOT_FOUND));
+        return;
+      }
+
+      veiculo
+      .destroy()
+      .then(function() {
+        res.json(ResponseHandler.getResponse(strings.veiculo.success.VEICULO_DELETED));
+      })
+      .catch(function(error) {
+        res.status(500).json(ResponseHandler.getErrorResponse(strings.veiculo.errors.CANT_DELETE_VEICULO, error));
+      })
+    })
+    .catch(function(error) {
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.veiculo.errors.CANT_FIND_VEICULO, error));
+    });
+  };
+
   return controller;
 };

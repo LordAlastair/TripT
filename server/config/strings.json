@@ -24,8 +24,13 @@
     "errors": {
       "VEI_QT_VAGAS_REQUIRED": "Quantidade de vagas é obrigatório.",
       "VEI_DS_DER_REQUIRED": "Registro DER é obrigatório.",
-      "VEI_DS_PLACA_REQUIRED": "Placa do veículo é obrigatória."
+      "VEI_DS_PLACA_REQUIRED": "Placa do veículo é obrigatória.",
+      "VEICULO_NOT_FOUND": "Veículo não encontrado.",
+      "CANT_FIND_VEICULO": "Não foi possível encontrar veículo.",
+      "CANT_DELETE_VEICULO": "Não foi possível remover veículo."
     },
-    "success": {}
+    "success": {
+      "VEICULO_DELETED": "Veículo removido com sucesso."
+    }
   }
 }

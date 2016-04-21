@@ -188,5 +188,34 @@ module.exports = function(app) {
     });
   }
 
+  controller.delete = function(req, res) {
+
+    models
+    .Usuario
+    .findById(req.params.id, {
+      where: {
+        usu_cd_usuario: req.user.usu_cd_usuario
+      }
+    })
+    .then(function(usuario) {
+      if(!usuario) {
+        res.status(404).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER));
+        return;
+      }
+
+      usuario
+      .destroy()
+      .then(function() {
+        res.json(ResponseHandler.getResponse(strings.usuario.success.USUARIO_DELETED));
+      })
+      .catch(function(error) {
+        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_DELETE_USUARIO, error));
+      })
+    })
+    .catch(function(error) {
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.erros.CANT_FIND_USER, error));
+    })
+  }
+
   return controller;
 };

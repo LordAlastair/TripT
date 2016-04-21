@@ -12,12 +12,14 @@
       "CANT_SEND_EMAIL": "Não foi possível enviar email.",
       "CANT_UPDATE_USER": "Não foi possível atualizar usuário.",
       "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário.",
-      "NEW_PASSWOR_REQUIRED": "Nova senha obrigatória."
+      "NEW_PASSWOR_REQUIRED": "Nova senha obrigatória.",
+      "CANT_DELETE_USUARIO": "Não foi possivel excluir conta."
     },
     "success": {
       "PASSWORD_CHANGED": "Senha alterada com sucesso.",
       "USER_CREATED": "Usuário criado.",
-      "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail."
+      "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail.",
+      "USUARIO_DELETED": "Conta excluida com sucesso."
     }
   },
   "veiculo": {

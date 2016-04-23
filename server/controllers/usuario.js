@@ -44,7 +44,7 @@ module.exports = function(app) {
       res.status(200).json(ResponseHandler.getTokenResponse(usuario));
     })
     .catch(function(err) {
-      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER), err);
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USUARIO), err);
     });
   };
 
@@ -69,10 +69,10 @@ module.exports = function(app) {
     .Usuario
     .create(usuario)
     .then(function(usuario) {
-      res.status(201).json(ResponseHandler.getResponse(strings.usuario.success.USER_CREATED));
+      res.status(201).json(ResponseHandler.getResponse(strings.usuario.success.USUARIO_CREATED));
     })
     .catch(function(err) {
-      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.USER_ALREADY_EXISTS, err));
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.USUARIO_ALREADY_EXISTS, err));
     });
   };
 
@@ -129,22 +129,19 @@ module.exports = function(app) {
         });
       })
       .catch(function(error) {
-        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_UPDATE_USER, error));
+        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_UPDATE_USUARIO, error));
       });
     })
     .catch(function(error) {
-      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER, error));
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USUARIO, error));
     });
   }
 
   controller.changepass = function(req, res) {
     //TEST =>   curl -v -X POST http://localhost:3000/usuario/changepass -d '{ "usu_ds_email": "shayron.aguiar@gmail.com", "usu_ds_senha": "123456", "usu_ds_nova_senha": "123senhanova456" }' -H "Content-Type: application/json"
 
-    req.assert('usu_ds_email', strings.usuario.errors.EMAIL_REQUIRED).notEmpty();
-    req.assert('usu_ds_email', strings.usuario.errors.INVALID_EMAIL_FORMAT).isEmail();
     req.assert('usu_ds_senha', strings.usuario.errors.PASSWORD_REQUIRED).notEmpty();
     req.assert('usu_ds_nova_senha', strings.usuario.errors.NEW_PASSWORD_REQUIRED).notEmpty();
-
 
     var errors = req.validationErrors();
 
@@ -156,7 +153,9 @@ module.exports = function(app) {
     models
     .Usuario
     .findOne({
-      where: { usu_ds_email: req.body.usu_ds_email }
+      where: {
+        usu_ds_email: req.user.usu_ds_email
+      }
     })
     .then(function(usuario) {
       if (!usuario) {
@@ -174,7 +173,7 @@ module.exports = function(app) {
       .update({
         usu_ds_senha: req.body.usu_ds_nova_senha
       },{
-        where: { usu_ds_email: req.body.usu_ds_email }
+        where: { usu_ds_email: req.user.usu_ds_email }
       })
       .then(function() {
         res.status(200).json(ResponseHandler.getResponse(strings.usuario.success.PASSWORD_CHANGED));
@@ -184,37 +183,26 @@ module.exports = function(app) {
       });
     })
     .catch(function(error) {
-      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER, error));
+      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USUARIO, error));
     });
   }
 
   controller.delete = function(req, res) {
-
     models
     .Usuario
-    .findById(req.params.id, {
-      where: {
-        usu_cd_usuario: req.user.usu_cd_usuario
-      }
-    })
+    .findById(req.user.usu_cd_usuario)
     .then(function(usuario) {
-      if(!usuario) {
-        res.status(404).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USER));
+      if (!usuario) {
+        res.status(404).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USUARIO));
         return;
       }
 
       usuario
       .destroy()
-      .then(function() {
-        res.json(ResponseHandler.getResponse(strings.usuario.success.USUARIO_DELETED));
-      })
-      .catch(function(error) {
-        res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_DELETE_USUARIO, error));
-      })
+      .then(() => res.json(ResponseHandler.getResponse(strings.usuario.success.USUARIO_DELETED)))
+      .catch(error => res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_DELETE_USUARIO, error)));
     })
-    .catch(function(error) {
-      res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.erros.CANT_FIND_USER, error));
-    })
+    .catch(error => res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.erros.CANT_FIND_USUARIO, error)));
   }
 
   return controller;

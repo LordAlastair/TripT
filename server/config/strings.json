@@ -1,25 +1,27 @@
 {
+  "general": {
+    "FORBIDDEN": "Acesso proíbido."
+  },
   "usuario": {
     "errors": {
       "EMAIL_REQUIRED": "Email é obrigatório.",
-      "INVALID_EMAIL_FORMAT": "Email inválido.",
       "EMAIL_NOT_FOUND": "Email não cadastrado.",
-      "INVALID_PASSWORD": "Senha inválida.",
       "EMAIL_ALREADY_EXISTS": "Usuário já existe.",
+      "INVALID_EMAIL_FORMAT": "Email inválido.",
+      "INVALID_PASSWORD": "Senha inválida.",
       "PASSWORD_REQUIRED": "Senha é obrigatória.",
       "NEW_PASSWORD_REQUIRED": "Senha nova é obrigatória.",
-      "CANT_FIND_USER": "Não foi possível encontrar usuário.",
       "CANT_SEND_EMAIL": "Não foi possível enviar email.",
-      "CANT_UPDATE_USER": "Não foi possível atualizar usuário.",
       "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário.",
-      "NEW_PASSWOR_REQUIRED": "Nova senha obrigatória.",
-      "CANT_DELETE_USUARIO": "Não foi possivel excluir conta."
+      "CANT_FIND_USUARIO": "Não foi possível encontrar usuário.",
+      "CANT_UPDATE_USUARIO": "Não foi possível atualizar usuário.",
+      "CANT_DELETE_USUARIO": "Não foi possivel excluir usuário."
     },
     "success": {
       "PASSWORD_CHANGED": "Senha alterada com sucesso.",
-      "USER_CREATED": "Usuário criado.",
       "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail.",
-      "USUARIO_DELETED": "Conta excluida com sucesso."
+      "USUARIO_CREATED": "Usuário criado.",
+      "USUARIO_DELETED": "Usuário excluido com sucesso."
     }
   },
   "veiculo": {
@@ -29,7 +31,7 @@
       "VEI_DS_PLACA_REQUIRED": "Placa do veículo é obrigatória.",
       "VEICULO_NOT_FOUND": "Veículo não encontrado.",
       "CANT_FIND_VEICULO": "Não foi possível encontrar veículo.",
-      "CANT_DELETE_VEICULO": "Não foi possível remover veículo."
+      "CANT_DELETE_VEICULO": "Não foi possível excluir veículo."
     },
     "success": {
       "VEICULO_DELETED": "Veículo removido com sucesso."

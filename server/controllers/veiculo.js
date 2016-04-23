@@ -9,8 +9,6 @@ module.exports = function (app) {
   var controller = {};
 
   controller.find = function(req, res) {
-    console.log(req.user);
-
     models
     .Veiculo
     .findById(req.params.id, {

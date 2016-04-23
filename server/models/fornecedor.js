@@ -11,6 +11,11 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.INTEGER
     },
 
+    for_fl_pessoa: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
+
     for_ds_pessoa: {
       allowNull: false,
       type: Sequelize.STRING
@@ -46,7 +51,7 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.STRING
     },
 
-    for_ds_completo: {
+    for_ds_complemento: {
       allowNull: true,
       type: Sequelize.STRING
     },
@@ -74,10 +79,10 @@ module.exports = function(sequelize, DataTypes){
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        // Fornecedor.hasOne(models.Usuario, {
-        //   foreignKey: 'usu_cd_usuario',
-        //   allowNull: false
-        // });
+        Fornecedor.belongsTo(models.Usuario, {
+          foreignKey: 'for_cd_usuario',
+          allowNull: false
+        });
       }
     }
   });

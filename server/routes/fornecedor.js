@@ -10,11 +10,10 @@ module.exports = function (app) {
   /** exige que tenha o header Authorization na requisição */
   router.use(passport.authenticate('jwt', { session: false }));
 
-  router.get('/', controller.findAll);
   router.post('/', controller.create);
-
-  router.get('/:id', controller.find);
-  router.put('/:id', controller.update);
+  router.get('/', controller.find);
+  router.get('/all', controller.findAll);
+  router.put('/', controller.update);
 
   app.use('/fornecedor', router)
 };

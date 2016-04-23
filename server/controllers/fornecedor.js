@@ -1,7 +1,7 @@
 'use strict';
 
 const models = require('../models');
-S
+
 module.exports = function (app) {
   var controller = {};
   controller.find = function(req, res) {

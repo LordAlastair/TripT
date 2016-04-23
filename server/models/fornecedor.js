@@ -11,14 +11,14 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.INTEGER
     },
 
-    for_fl_pessoa: {
-      allowNull: false,
-      type: Sequelize.INTEGER
-    },
-
     for_ds_pessoa: {
       allowNull: false,
       type: Sequelize.STRING
+    },
+
+    for_fl_pessoa: {
+      allowNull: false,
+      type: Sequelize.STRING(1)
     },
 
     for_ds_razao_social: {
@@ -48,7 +48,7 @@ module.exports = function(sequelize, DataTypes){
 
     for_ds_numero: {
       allowNull: true,
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
 
     for_ds_complemento: {

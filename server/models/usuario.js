@@ -1,5 +1,7 @@
 'use strict';
 
+var models = require('./index');
+
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
@@ -23,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
     },
     instanceMethods: { },

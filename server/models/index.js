@@ -31,6 +31,30 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+function createAuditoria(instance, options) {
+  if (instance.$modelOptions.name.plural !== "Auditoria") {
+    var auditoriaObject = {
+      aud_ds_tabela: instance.$modelOptions.name.plural,
+      aud_ds_alteracao: JSON.stringify(instance._changed),
+      aud_cd_usuario: 0,
+      aud_ts_modificacao: new Date(),
+      aud_ds_modificacao: JSON.stringify({
+        "before": instance._previousDataValues,
+        "now": instance.dataValues
+      })
+    };
+
+    db
+    .Auditoria
+    .create(auditoriaObject)
+    .catch(error => console.log(error));
+  }
+}
+
+sequelize.addHook('afterCreate', createAuditoria);
+sequelize.addHook('afterUpdate', createAuditoria);
+sequelize.addHook('afterDelete', createAuditoria);
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -11,15 +11,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     aud_ds_tabela: {
       allowNull: false,
-      type: Sequelize.STRING(45)
+      type: Sequelize.STRING(100)
     },
     aud_ds_alteracao: {
       allowNull: false,
-      type: Sequelize.STRING(45)
-    }, 
+      type: Sequelize.STRING(2500)
+    },
     aud_cd_usuario: {
       allowNull: false,
-      type: Sequelize.STRING(45)
+      type: Sequelize.INTEGER
     },
     aud_ts_modificacao: {
       allowNull: false,
@@ -27,14 +27,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     aud_ds_modificacao: {
       allowNull: false,
-      type: Sequelize.STRING(1000)
+      type: Sequelize.STRING(2500)
     }
   }, {
-    timestamps: false,
-    classMethods: {
-      associate: function(models) {
-      }
-    }
+    timestamps: false
   });
+  
   return Auditoria;
 };

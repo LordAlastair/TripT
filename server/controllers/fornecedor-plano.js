@@ -7,8 +7,16 @@ module.exports = function(app) {
   controller.find = function(req, res) {
     models
       .FornecedorPlano
-      .findById(req.params.id)
+      .findById(req.params.id, {
+        include: [
+          { all: true }
+        ]
+      })
       .then(function(fornecedorPlano) {
+        if(!fornecedorPlano){
+          res.status(404).end();
+          return;
+        }
         res.json(fornecedorPlano);
       });
   };
@@ -16,15 +24,21 @@ module.exports = function(app) {
   controller.findAll = function(req, res) {
     models
       .FornecedorPlano
-      .findAll()
+      .findAll({
+        where: {
+          for_cd_usuario: req.user.usu_cd_usuario
+        }
+      })
       .then(function(fornecedorPlano) {
+        if (!fornecedorPlano){
+          res.status(404).end();
+          return;
+        }
         res.json(fornecedorPlano);
       });
   };
 
   controller.create = function(req, res) {
-    // TEST: curl -v -X POST http://$(docker-machine ip):3000/veiculoCaracteristica -d '{ "vec_cd_veiculo": "1", "vec_cd_caracteristica": "1"}' -H "Content-Type: application/json"
-
     models
       .FornecedorPlano
       .create(req.body)
@@ -37,16 +51,18 @@ module.exports = function(app) {
   };
 
   controller.update = function(req, res) {
-    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "vec_cd_veiculo": "1", "vec_cd_caracteristica": "1" }' http://$(docker-machine ip):3000/veiculoCaracteristica/1
-
     models
       .FornecedorPlano
       .update(req.body, {
         where: {
-          fop_cd_Fornecedor_plano: req.params.id
+          fop_cd_fornecedor_plano: req.params.id
         }
       })
       .then(function(fornecedorPlano) {
+        if (!fornecedorPlano){
+          res.status(404).end();
+          return;
+        }
         res.json(fornecedorPlano);
       })
       .catch(function(error) {

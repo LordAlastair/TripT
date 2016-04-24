@@ -46,5 +46,21 @@
     "success": {
       "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."
     }
+  },
+  "cliente": {
+    "errors": {
+      "CLI_DS_NOME": "Nome é obrigatório"
+    },
+    "success": {
+      "CLIENTE_SAVE": "Cadastro atualizado com sucesso."
+    }
+  },
+  "instituicao": {
+    "errors": {
+      "INS_DS_INSTITUICAO_RIQUIRED": "Nome é obrigatório"
+    },
+    "success": {
+      "INSTITUICAO_SAVE": "Cadastro atualizado com sucesso."
+    }
   }
 }

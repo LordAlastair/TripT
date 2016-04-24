@@ -1,6 +1,7 @@
 'use strict';
 
 const models = require('../models');
+const strings = require("../config/strings.json");
 
 module.exports = function (app) {
   var controller = {};
@@ -38,10 +39,11 @@ module.exports = function (app) {
 
   controller.create = function(req, res) {
     // TEST: curl -v -X POST http://$(docker-machine ip):3000/fornecedor -d { "for_cd_usuario": "1", "for_ds_pessoa": "Zézin", "for_ds_fantasia_nome": "Tio da van", "for_ds_celular": "27996334520", "for_ds_email": "tiovan@t.com"}' -H "Content-Type: application/json"
+    req.body.for_cd_usuario = req.user.usu_cd_usuario;
 
     models
     .Fornecedor
-    .create(req.query)
+    .create(req.body)
     .then(function(fornecedor) {
       res.status(201).json(fornecedor);
     })
@@ -52,6 +54,10 @@ module.exports = function (app) {
 
   controller.update = function(req, res) {
     req.assert('for_ds_fantasia_nome', strings.fornecedor.errors.FOR_DS_FANTASIA_NOME_REQUIRED).notEmpty();
+    if(!req.body.for_cd_fornecedor){
+      controller.create(req, res);
+      return;
+    }
 
     //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "for_cd_usuario": "1", "for_ds_pessoa": "Zézin", "for_ds_fantasia_nome": "Tio da van", "for_ds_celular": "27996334520", "for_ds_email": "tiovan@t.com"}' http://$(docker-machine ip):3000/fornecedor/1
     models

@@ -8,7 +8,7 @@ module.exports = function (app) {
   const router = express.Router();
 
   /** exige que tenha o header Authorization na requisição */
-  passport.authenticate('jwt', { session: false });
+  router.use(passport.authenticate('jwt', { session: false }));
 
   router.post('/', controller.create);
   router.get('/', controller.find);

@@ -56,6 +56,7 @@ module.exports = function (app) {
     req.assert('for_fl_pessoa', strings.fornecedor.errors.FOR_FL_PESSOA_REQUIRED).notEmpty();
     req.assert('for_ds_fantasia_nome', strings.fornecedor.errors.FOR_DS_FANTASIA_NOME_REQUIRED).notEmpty();
     req.assert('for_ds_celular', strings.fornecedor.errors.FOR_DS_CELULAR_REQUIRED).notEmpty();
+    req.assert('for_cd_transporte', strings.fornecedor.errors.FOR_CD_TRANSPORTE_REQUIRED).notEmpty();
 
     var errors = req.validationErrors();
 

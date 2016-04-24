@@ -41,7 +41,8 @@
     "errors": {
       "FOR_DS_FANTASIA_NOME_REQUIRED": "Nome é obrigatório",
       "FOR_DS_CELULAR_REQUIRED": "Celular é obrigatório",
-      "FOR_FL_PESSOA_REQUIRED": "Tipo de pessoa é obrigatório"
+      "FOR_FL_PESSOA_REQUIRED": "Tipo de pessoa é obrigatório",
+      "FOR_CD_TRANSPORTE_REQUIRED": "Tipo de transporte é obrigatório"
     },
     "success": {
       "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."

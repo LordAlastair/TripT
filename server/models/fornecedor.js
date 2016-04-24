@@ -64,6 +64,11 @@ module.exports = function(sequelize, DataTypes){
     for_ds_celular: {
       allowNull: false,
       type: Sequelize.STRING
+    },
+
+    for_cd_transporte: {
+      allowNull: false,
+      type: Sequelize.STRING
     }
   }, {
     timestamps: false,

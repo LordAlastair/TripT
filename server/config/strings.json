@@ -36,5 +36,13 @@
     "success": {
       "VEICULO_DELETED": "Veículo removido com sucesso."
     }
+  },
+  "fornecedor": {
+    "errors": {
+      "FOR_DS_FANTASIA_NOME_REQUIRED": "Nome é obrigatório"
+    },
+    "success": {
+      "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."
+    }
   }
 }

@@ -11,11 +11,6 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.INTEGER
     },
 
-    for_ds_pessoa: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-
     for_fl_pessoa: {
       allowNull: false,
       type: Sequelize.STRING(1)
@@ -67,11 +62,6 @@ module.exports = function(sequelize, DataTypes){
     },
 
     for_ds_celular: {
-      allowNull: false,
-      type: Sequelize.STRING
-    },
-
-    for_ds_email: {
       allowNull: false,
       type: Sequelize.STRING
     }

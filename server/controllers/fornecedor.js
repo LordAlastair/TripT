@@ -53,7 +53,17 @@ module.exports = function (app) {
   };
 
   controller.update = function(req, res) {
+    req.assert('for_fl_pessoa', strings.fornecedor.errors.FOR_FL_PESSOA_REQUIRED).notEmpty();
     req.assert('for_ds_fantasia_nome', strings.fornecedor.errors.FOR_DS_FANTASIA_NOME_REQUIRED).notEmpty();
+    req.assert('for_ds_celular', strings.fornecedor.errors.FOR_DS_CELULAR_REQUIRED).notEmpty();
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+      res.status(412).json(errors);
+      return;
+    }
+
     if(!req.body.for_cd_fornecedor){
       controller.create(req, res);
       return;

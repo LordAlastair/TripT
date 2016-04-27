@@ -13,9 +13,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    fop_ds_plano: {
+    fop_cd_plano: {
       allowNull: false,
-      type: Sequelize.STRING(45)
+      type: Sequelize.INTEGER
     },
     fop_vl_plano: {
       allowNull: false,

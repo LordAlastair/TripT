@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes){
     classMethods: {
       associate: function(models) {
         Planos.hasMany(models.FornecedorPlano, {
-          foreignKey: 'for_cd_plano',
+          foreignKey: 'fop_cd_plano',
           allowNull: false
         });
       }

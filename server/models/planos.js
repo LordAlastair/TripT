@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes){
   var Sequelize = sequelize.Sequelize;
 
-  var Fornecedor = sequelize.define('Planos', {
+  var Planos = sequelize.define('Planos', {
     pla_cd_planos: {
       allowNull: false,
       autoIncrement: true,

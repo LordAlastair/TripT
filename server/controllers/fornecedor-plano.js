@@ -22,11 +22,25 @@ module.exports = function(app) {
   };
 
   controller.findAll = function(req, res) {
+
     models
+    .Fornecedor
+    .findOne({
+      where: {
+        for_cd_usuario: req.user.usu_cd_usuario
+      }
+    })
+    .then(function(fornecedor) {
+      if (!fornecedor) {
+        res.status(404).end();
+        return;
+      }
+
+      models
       .FornecedorPlano
       .findAll({
         where: {
-        //  for_cd_usuario: req.user.usu_cd_usuario
+          fop_cd_fornecedor: fornecedor.for_cd_fornecedor
         }
       })
       .then(function(fornecedorPlano) {
@@ -36,6 +50,8 @@ module.exports = function(app) {
         }
         res.json(fornecedorPlano);
       });
+    });
+
   };
 
   controller.create = function(req, res) {

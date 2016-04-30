@@ -3,7 +3,9 @@
 const models = require('../models');
 
 
-module.exports = function(){
+module.exports = function (app) {
+  var controller = {};
+
   controller.findAll = function(req, res) {
     models
     .Planos
@@ -12,4 +14,6 @@ module.exports = function(){
       res.json(planos);
     });
   };
+
+  return controller;
 }

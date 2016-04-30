@@ -3,15 +3,15 @@
 module.exports = function(sequelize, DataTypes){
   var Sequelize = sequelize.Sequelize;
 
-  var Planos = sequelize.define('Planos', {
-    pla_cd_plano: {
+    var Pagamentos = sequelize.define('Pagamentos', {
+    pag_cd_pagamento: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
 
-    pla_ds_plano: {
+    pag_ds_pagamento: {
       allowNull: false,
       type: Sequelize.STRING(45)
     }
@@ -19,13 +19,9 @@ module.exports = function(sequelize, DataTypes){
     timestamps: false,
     classMethods: {
       associate: function(models) {
-//        Planos.hasMany(models.FornecedorPlano, {
-//          foreignKey: 'fop_cd_plano',
-//          allowNull: false
-//        });
       }
     }
   });
 
-  return Planos;
+  return Pagamentos;
 };

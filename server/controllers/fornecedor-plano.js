@@ -26,7 +26,7 @@ module.exports = function(app) {
       .FornecedorPlano
       .findAll({
         where: {
-          for_cd_usuario: req.user.usu_cd_usuario
+        //  for_cd_usuario: req.user.usu_cd_usuario
         }
       })
       .then(function(fornecedorPlano) {

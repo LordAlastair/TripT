@@ -1,6 +1,6 @@
 'use strict';
 
-var Planos = require('./data/pagamentos.json');
+var Pagamentos = require('./data/pagamentos.json');
 
 module.exports = {
   up: function (queryInterface, Sequelize) {

@@ -33,11 +33,6 @@ module.exports = function(app) {
       }
     })
     .then(function(fornecedor) {
-      if (!fornecedor) {
-        res.status(404).end();
-        return;
-      }
-
       models
       .FornecedorPlano
       .findAll({

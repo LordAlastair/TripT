@@ -1,0 +1,67 @@
+{
+  "general": {
+    "FORBIDDEN": "Acesso proíbido."
+  },
+  "usuario": {
+    "errors": {
+      "EMAIL_REQUIRED": "Email é obrigatório.",
+      "EMAIL_NOT_FOUND": "Email não cadastrado.",
+      "EMAIL_ALREADY_EXISTS": "Usuário já existe.",
+      "INVALID_EMAIL_FORMAT": "Email inválido.",
+      "INVALID_PASSWORD": "Senha inválida.",
+      "PASSWORD_REQUIRED": "Senha é obrigatória.",
+      "NEW_PASSWORD_REQUIRED": "Senha nova é obrigatória.",
+      "CANT_SEND_EMAIL": "Não foi possível enviar email.",
+      "CANT_CHANGE_PASSWORD": "Não foi possível trocar a senha do usuário.",
+      "CANT_FIND_USUARIO": "Não foi possível encontrar usuário.",
+      "CANT_UPDATE_USUARIO": "Não foi possível atualizar usuário.",
+      "CANT_DELETE_USUARIO": "Não foi possivel excluir usuário."
+    },
+    "success": {
+      "PASSWORD_CHANGED": "Senha alterada com sucesso.",
+      "PASSWORD_RECOVERY": "Sua nova senha foi enviada para seu e-mail.",
+      "USUARIO_CREATED": "Usuário criado.",
+      "USUARIO_DELETED": "Usuário excluido com sucesso."
+    }
+  },
+  "veiculo": {
+    "errors": {
+      "VEI_QT_VAGAS_REQUIRED": "Quantidade de vagas é obrigatório.",
+      "VEI_DS_DER_REQUIRED": "Registro DER é obrigatório.",
+      "VEI_DS_PLACA_REQUIRED": "Placa do veículo é obrigatória.",
+      "VEICULO_NOT_FOUND": "Veículo não encontrado.",
+      "CANT_FIND_VEICULO": "Não foi possível encontrar veículo.",
+      "CANT_DELETE_VEICULO": "Não foi possível excluir veículo."
+    },
+    "success": {
+      "VEICULO_DELETED": "Veículo removido com sucesso."
+    }
+  },
+  "fornecedor": {
+    "errors": {
+      "FOR_DS_FANTASIA_NOME_REQUIRED": "Nome é obrigatório",
+      "FOR_DS_CELULAR_REQUIRED": "Celular é obrigatório",
+      "FOR_FL_PESSOA_REQUIRED": "Tipo de pessoa é obrigatório",
+      "FOR_CD_TRANSPORTE_REQUIRED": "Tipo de transporte é obrigatório"
+    },
+    "success": {
+      "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."
+    }
+  },
+  "cliente": {
+    "errors": {
+      "CLI_DS_NOME": "Nome é obrigatório"
+    },
+    "success": {
+      "CLIENTE_SAVE": "Cadastro atualizado com sucesso."
+    }
+  },
+  "instituicao": {
+    "errors": {
+      "INS_DS_INSTITUICAO_RIQUIRED": "Nome é obrigatório"
+    },
+    "success": {
+      "INSTITUICAO_SAVE": "Cadastro atualizado com sucesso."
+    }
+  }
+}

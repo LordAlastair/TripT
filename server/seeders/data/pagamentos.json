@@ -1,0 +1,18 @@
+[
+  {
+    "pag_cd_pagamento": "1",
+    "pag_ds_pagamento": "Dinheiro"
+  },
+  {
+    "pag_cd_pagamento": "2",
+    "pag_ds_pagamento": "Cartão"
+  },
+  {
+    "pag_cd_pagamento": "3",
+    "pag_ds_pagamento": "Cheque"
+  },
+  {
+    "pag_cd_pagamento": "4",
+    "pag_ds_pagamento": "Boleto"
+  }
+]

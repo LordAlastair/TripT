@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "passw0rd",
+    "database": "tript",
+    "host": "192.168.99.100",
+    "port": "32776",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin",
+    "password": "passw0rd",
+    "database": "tript",
+    "host": "192.168.99.100",
+    "port": "32775",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "tript",
+    "password": "passw0rd",
+    "database": "tript",
+    "host": "aaew7c629uttvd.csoh38pii3fe.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "tript-backend",
+  "version": "0.0.1",
+  "description": "Backend do serviço Tript",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "start-test": "export NODE_ENV=test; nodemon index.js",
+    "test": "export NODE_ENV=test; mocha --recursive",
+    "testd": "export NODE_ENV=test; mocha --recursive --watch",
+    "migrate": "node ./migrations/sync.js",
+    "migrate-test": "export NODE_ENV=test; node ./migrations/sync.js",
+    "seed": "sequelize db:seed:all",
+    "seed-test": "export NODE_ENV=test; sequelize db:seed:all"
+  },
+  "author": "Armando Magalhães",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "consign": "^0.1.2",
+    "express": "^4.13.4",
+    "express-validator": "^2.20.3",
+    "generate-password": "^1.1.1",
+    "jwt-simple": "^0.5.0",
+    "method-override": "^2.3.5",
+    "nodemailer": "^2.3.1",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.0.0",
+    "pg": "^4.5.1",
+    "pg-hstore": "^2.3.2",
+    "promise": "^7.1.1",
+    "sequelize": "^3.19.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
+    "sequelize-cli": "^2.3.1",
+    "supertest": "^1.2.0"
+  }
+}

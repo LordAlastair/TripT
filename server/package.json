@@ -17,6 +17,7 @@
   "author": "Armando Magalhães",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "body-parser": "^1.15.0",
     "consign": "^0.1.2",
     "express": "^4.13.4",

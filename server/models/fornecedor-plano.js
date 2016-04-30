@@ -18,7 +18,6 @@ module.exports = function(sequelize, DataTypes) {
       type: Sequelize.INTEGER
     },
     fop_vl_plano: {
-      allowNull: false,
       type: Sequelize.DECIMAL(18, 2)
     },
     fop_dt_expiracao: {

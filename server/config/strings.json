@@ -48,6 +48,14 @@
       "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."
     }
   },
+  "fornecedor-plano": {
+    "errors": {
+
+    },
+    "success": {
+      "UPDATE_OK": "Lista de Planos atualizada."
+    }
+  },
   "cliente": {
     "errors": {
       "CLI_DS_NOME": "Nome é obrigatório"

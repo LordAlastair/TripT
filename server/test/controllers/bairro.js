@@ -5,6 +5,10 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should;
 
+function getRandomIntInclusive(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 var arrayBairros = [];
 
 describe("GET /bairro", function() {
@@ -64,23 +68,15 @@ describe("GET /bairro/:id", function() {
   });
 
   it("deve retornar codigo 404 ao buscar codigos que nao existem", function(done) {
-    var id = 12321312;
+    var id = getRandomIntInclusive(200,300);
 
     request(app)
     .get(`/bairro/${id}`)
-    .expect('Content-Type', /json/)
     .expect(404)
     .end(function (err, res) {
       if (err) throw err;
 
-      errorResponse = res.body;
-
       done();
     });
-  });
-
-  it("deve retornar motivo do erro", function(done) {
-    expect(errorResponse).to.have.property('message').that.is.a('string');
-    done();
   });
 });

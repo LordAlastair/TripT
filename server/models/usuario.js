@@ -1,30 +1,36 @@
 'use strict';
+
+var models = require('./index');
+
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var Rota = sequelize.define('Rota', {
-    rot_cd_rota: {
+  var Usuario = sequelize.define('Usuario', {
+    usu_cd_usuario: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    rot_cd_van: {
+    usu_ds_email: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      unique: true,
+      type: Sequelize.STRING
     },
-    rot_cd_bairro: {
+    usu_ds_senha: {
       allowNull: false,
-      type: Sequelize.INTEGER
-    }
+      type: Sequelize.STRING
+    },
   }, {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
-    }
+    },
+    instanceMethods: { },
+    hooks: { }
   });
 
-  return Rota;
+  return Usuario;
 };

@@ -2,18 +2,18 @@
 module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
-  var ListaCaracteristica = sequelize.define('ListaCaracteristica', {
-    lic_cd_lista_caracteristica: {
+  var FornecedorPlanoVinculo = sequelize.define('FornecedorPlanoVinculo', {
+    fpv_cd_vinculo: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    lic_cd_van: {
+    fpv_cd_plano: {
       allowNull: false,
       type: Sequelize.INTEGER
     },
-    lic_cd_caracteristica: {
+    fpv_cd_veiculo: {
       allowNull: false,
       type: Sequelize.INTEGER
     }
@@ -21,10 +21,9 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
     }
   });
-
-  return ListaCaracteristica;
+  return FornecedorPlanoVinculo;
 };

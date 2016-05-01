@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": "passw0rd",
-    "database": "vagalivre",
+    "database": "tript",
     "host": "192.168.99.100",
     "port": "32776",
     "dialect": "postgres"
@@ -10,16 +10,16 @@
   "test": {
     "username": "admin",
     "password": "passw0rd",
-    "database": "vagalivre",
+    "database": "tript",
     "host": "192.168.99.100",
     "port": "32775",
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "tript",
+    "password": "passw0rd",
+    "database": "tript",
+    "host": "aaew7c629uttvd.csoh38pii3fe.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres"
   }
 }

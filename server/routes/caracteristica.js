@@ -1,13 +1,13 @@
 'use strict';
 
+const express = require('express');
+
 module.exports = function (app) {
   const controller = app.controllers.caracteristica;
+  const router = express.Router();
 
-  app
-  .route('/caracteristica')
-  .get(controller.findAll);
+  router.get('/', controller.findAll);
+  router.get('/:id', controller.find);
 
-  app
-  .route('/caracteristica/:id')
-  .get(controller.find);
+  app.use('/caracteristica', router);
 };

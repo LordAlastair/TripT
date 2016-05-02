@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
   var FornecedorPlanoVinculo = sequelize.define('FornecedorPlanoVinculo', {
-    fpv_cd_vinculo: {
+    fpv_cd_fornecedor_plano_vinculo: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,

@@ -42,10 +42,11 @@
       "FOR_DS_FANTASIA_NOME_REQUIRED": "Nome é obrigatório",
       "FOR_DS_CELULAR_REQUIRED": "Celular é obrigatório",
       "FOR_FL_PESSOA_REQUIRED": "Tipo de pessoa é obrigatório",
-      "FOR_CD_TRANSPORTE_REQUIRED": "Tipo de transporte é obrigatório"
+      "FOR_CD_TRANSPORTE_REQUIRED": "Tipo de transporte é obrigatório",
+      "CANT_CREATE_FORNECEDOR": "Não foi possível criar o fornecedor."
     },
     "success": {
-      "FORNECEDOR_SAVE": "Cadastro atualizado com sucesso."
+      "FORNECEDOR_UPDATED": "Cadastro atualizado com sucesso."
     }
   },
   "fornecedor-plano": {

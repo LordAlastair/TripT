@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Instituicaos', [
+    return queryInterface.bulkInsert('Instituicoes', [
       {
         ins_ds_instituicao: 'UVV'
       },
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Instituicaos', null, {});
+    return queryInterface.bulkDelete('Instituicoes', null, {});
   }
 };

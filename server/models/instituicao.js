@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.STRING
     }
   }, {
+    tableName: 'Instituicoes',
     timestamps: false
   });
 

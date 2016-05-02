@@ -3,10 +3,12 @@
 const models = require('../models');
 const strings = require("../config/strings.json");
 
+const ResponseHandler = require('../helpers/response-handler');
+
 module.exports = function (app) {
   var controller = {};
-  controller.find = function(req, res) {
 
+  controller.find = function(req, res) {
     models
     .Fornecedor
     .findOne({
@@ -32,8 +34,8 @@ module.exports = function (app) {
         { all: true }
       ]
     })
-    .then(function(fornecedors) {
-      res.json(fornecedors);
+    .then(function(fornecedores) {
+      res.json(fornecedores);
     });
   };
 
@@ -48,7 +50,7 @@ module.exports = function (app) {
       res.status(201).json(fornecedor);
     })
     .catch(function(error) {
-      res.status(412).json(error);
+      res.status(412).json(ResponseHandler.getErrorResponse(strings.fornecedor.errors.CANT_CREATE_FORNECEDOR), error);
     });
   };
 
@@ -70,7 +72,6 @@ module.exports = function (app) {
       return;
     }
 
-    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "for_cd_usuario": "1", "for_ds_pessoa": "Zézin", "for_ds_fantasia_nome": "Tio da van", "for_ds_celular": "27996334520", "for_ds_email": "tiovan@t.com"}' http://$(docker-machine ip):3000/fornecedor/1
     models
     .Fornecedor
     .update(req.body, {
@@ -82,7 +83,7 @@ module.exports = function (app) {
       res.json(fornecedor);
     })
     .catch(function(error) {
-      res.status(412).json(error);
+      res.status(412).json(ResponseHandler.getErrorResponse(error));
     });
   };
 

@@ -1,0 +1,31 @@
+version: '2'
+services:
+  webservice:
+    container_name: tript_webservice
+    build:
+      context: ./server
+      dockerfile: Dockerfile-production
+    command: npm start
+    volumes:
+      - ./server:/server
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    links:
+      - db
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - DOCKER_ENV=true
+
+  db:
+    container_name: tript_db
+    image: kiasaki/alpine-postgres:latest
+    ports:
+      - 32776:5432
+    environment:
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=tript
+      - PGDATA=/var/lib/postgresql/data

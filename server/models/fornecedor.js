@@ -71,6 +71,7 @@ module.exports = function(sequelize, DataTypes){
       type: Sequelize.STRING
     }
   }, {
+    tableName: 'Fornecedores',
     timestamps: false,
     classMethods: {
       associate: function(models) {

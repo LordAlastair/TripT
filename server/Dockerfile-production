@@ -1,10 +1,6 @@
 FROM node:4.4
-RUN mkdir /server
-ADD . /server
-WORKDIR /server
 ENV DOCKER_ENV true
 ENV NODE_ENV production
-RUN npm install --production
-RUN npm run migrate
-RUN npm run seed
+VOLUME /server
+WORKDIR /server
 EXPOSE 3000

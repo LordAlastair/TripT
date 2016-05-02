@@ -5,7 +5,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile-production
-    command: npm start
+    command: sh -c 'npm install; npm run migrate; npm run seed; npm start'
     volumes:
       - ./server:/server
     depends_on:

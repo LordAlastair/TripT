@@ -1,0 +1,10 @@
+[
+  {
+    "usu_ds_email": "cliente@t.com",
+    "usu_ds_senha": "123"
+  },
+  {
+    "usu_ds_email": "fornecedor@t.com",
+    "usu_ds_senha": "123"
+  }
+]

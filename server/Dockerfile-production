@@ -1,0 +1,6 @@
+FROM node:4.4
+ENV DOCKER_ENV true
+ENV NODE_ENV production
+VOLUME /server
+WORKDIR /server
+EXPOSE 3000

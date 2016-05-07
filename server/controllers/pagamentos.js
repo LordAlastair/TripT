@@ -8,7 +8,7 @@ module.exports = function (app) {
 
   controller.findAll = function(req, res) {
     models
-    .Planos
+    .Pagamentos
     .findAll({ include: [{ all: true }]})
     .then(function(pagamentos) {
       res.json(pagamentos);

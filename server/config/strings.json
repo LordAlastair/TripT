@@ -57,6 +57,14 @@
       "UPDATE_OK": "Lista de Planos atualizada."
     }
   },
+  "fornecedor-pagamentos":{
+    "errors":{
+
+    },
+    "sucess":{
+      "UPDATE_OK": "Lista de Pagamentos atualizada."
+    }
+  },
   "cliente": {
     "errors": {
       "CLI_DS_NOME": "Nome é obrigatório"

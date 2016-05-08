@@ -4,6 +4,7 @@ const generator = require('generate-password');
 
 const models = require('../models');
 const strings = require("../config/strings.json");
+const async = require('async');
 
 const ResponseHandler = require('../helpers/response-handler');
 const MailHelper = require('../helpers/mail-helper');
@@ -41,7 +42,48 @@ module.exports = function(app) {
 
       usuario.usu_ds_senha = null;
 
-      res.status(200).json(ResponseHandler.getTokenResponse(usuario));
+      async.parallel([
+        function(cb) {
+          models
+          .Fornecedor
+          .findOne({
+            where: {
+              for_cd_usuario: usuario.usu_cd_usuario
+            }
+          })
+          .then(result => cb(null, result))
+          .catch(error => cb(error, null));
+
+        },
+        function(cb) {
+          models
+          .Cliente
+          .findOne({
+            where: {
+              cli_cd_usuario: usuario.usu_cd_usuario
+            }
+          })
+          .then(result => cb(null, result))
+          .catch(error => cb(error, null));
+        }
+      ], function(errors, results) {
+        if (errors) {
+          res.status(500).json(ResponseHandler.getErrorResponse(errors));
+          return;
+        }
+
+        var role = {};
+
+        if (results[0] != null) {
+          role.type = "fornecedor";
+          role.data = results[0].get();
+        } else if (results[1] != null) {
+          role.type = "usuario";
+          role.data = results[1].get();
+        }
+
+        res.status(200).json(ResponseHandler.getTokenResponse(usuario, role));
+      });
     })
     .catch(function(err) {
       res.status(500).json(ResponseHandler.getErrorResponse(strings.usuario.errors.CANT_FIND_USUARIO), err);

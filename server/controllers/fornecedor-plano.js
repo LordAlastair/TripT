@@ -82,13 +82,6 @@ module.exports = function(app) {
           function(cb) {
             models
             .FornecedorPlano
-            .bulkCreate(req.body.checked)
-            .then(result => cb(null, result))
-            .catch(error => cb(error, null));
-          },
-          function(cb) {
-            models
-            .FornecedorPlano
             .destroy({
               where: {
                 fop_cd_fornecedor: fornecedor.for_cd_fornecedor,
@@ -99,7 +92,14 @@ module.exports = function(app) {
             })
             .then(result => cb(null, result))
             .catch(error => cb(error, null));
-          }
+          },
+          function(cb) {
+            models
+            .FornecedorPlano
+            .bulkCreate(req.body.checked)
+            .then(result => cb(null, result))
+            .catch(error => cb(error, null));
+          },
         ], function(errors, results) {
           if (errors) {
             res.status(500).json(ResponseHandler.getErrorResponse(errors));

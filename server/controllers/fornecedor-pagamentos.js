@@ -82,13 +82,6 @@ module.exports = function(app) {
           function(cb) {
             models
             .FornecedorPagamentos
-            .bulkCreate(req.body.checked)
-            .then(result => cb(null, result))
-            .catch(error => cb(error, null));
-          },
-          function(cb) {
-            models
-            .FornecedorPagamentos
             .destroy({
               where: {
                 fpg_cd_fornecedor: fornecedor.for_cd_fornecedor,
@@ -97,6 +90,13 @@ module.exports = function(app) {
                 }
               }
             })
+            .then(result => cb(null, result))
+            .catch(error => cb(error, null));
+          },
+          function(cb) {
+            models
+            .FornecedorPagamentos
+            .bulkCreate(req.body.checked)
             .then(result => cb(null, result))
             .catch(error => cb(error, null));
           }

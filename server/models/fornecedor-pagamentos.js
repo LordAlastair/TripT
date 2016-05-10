@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         }),
         FornecedorPagamentos.belongsTo(models.Pagamentos,{
-          foreignKey: 'pag_cd_pagamento',
+          foreignKey: 'fpg_cd_pagamento',
           allowNull: false
         })
       }

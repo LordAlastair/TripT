@@ -9,6 +9,7 @@ module.exports = function (app) {
 
   router.get('/', controller.findAll);
   router.get('/:id', controller.find);
+  router.get('/:id/:idInstituicao?', controller.rotasInstituicao);
   router.post('/', controller.create);
   router.put('/:id', controller.update);
   router.delete('/:id', controller.delete);

@@ -7,42 +7,70 @@ const strings = require("../config/strings.json");
 
 module.exports = function (app) {
   var controller = {};
-  
-  controller.find = function(req, res) {
+
+  controller.find = function (req, res) {
     models
-    .InstituicaoVeiculo
-    .findById(req.params.id, {include : [{all:true}]} )
-    .then(function(veiculoBairro) {
-      if (veiculoBairro) {
-        res.json(veiculoBairro);
-      } else {
-        res.status(404).send();
-      }
-    });
-  };
-  
-  controller.findAll = function(req, res) {
-    models
-    .InstituicaoVeiculo
-    .findAll({ include: [{ all: true }]})
-    .then(function(instituicaoVeiculo) {
-      res.json(instituicaoVeiculo);
-    });
+      .InstituicaoVeiculo
+      .findAll(
+      {
+        where: { inv_cd_veiculo: req.params.id },
+        include: [{
+          model: models.VeiculoBairro,
+          where: { veb_cd_veiculo: req.params.id }
+        }]
+      })
+      .then(function (InstituicaoVeiculo) {
+        if (InstituicaoVeiculo) {
+          res.json(InstituicaoVeiculo);
+        } else {
+          res.status(404).send();
+        }
+      });
   };
 
-  controller.create = function(req, res) {
-     models
-    .InstituicaoVeiculo
-    .create(req.body)
-    .then(function(instituicaoVeiculo) {
-      res.status(201).json(instituicaoVeiculo);
-    })
-    .catch(function(error) {
-      res.status(412).json(error);
-    });
+  controller.rotasInstituicao = function (req, res) {
+    models
+      .InstituicaoVeiculo
+      .findAll(
+      {
+        where: { inv_cd_veiculo: req.params.id, inv_cd_instituicao: req.params.idInstituicao },
+        include: [{
+          model: models.VeiculoBairro,
+          where: { veb_cd_veiculo: req.params.id }
+        }]
+      })
+      .then(function (veiculoBairro) {
+        if (veiculoBairro) {
+          res.json(veiculoBairro);
+        } else {
+          res.status(404).send();
+        }
+      });
   };
 
-  controller.update = function(req, res) {
+
+  controller.findAll = function (req, res) {
+    models
+      .InstituicaoVeiculo
+      .findAll({ include: [{ all: true }] })
+      .then(function (instituicaoVeiculo) {
+        res.json(instituicaoVeiculo);
+      });
+  };
+
+  controller.create = function (req, res) {
+    models
+      .InstituicaoVeiculo
+      .create(req.body)
+      .then(function (instituicaoVeiculo) {
+        res.status(201).json(instituicaoVeiculo);
+      })
+      .catch(function (error) {
+        res.status(412).json(error);
+      });
+  };
+
+  controller.update = function (req, res) {
     var errors = req.validationErrors();
 
     if (errors) {
@@ -50,27 +78,27 @@ module.exports = function (app) {
       return;
     }
 
-    if(!req.body.ins_cd_instituicao){
+    if (!req.body.ins_cd_instituicao) {
       controller.create(req, res);
       return;
     }
 
     models
-    .InstituicaoVeiculo
-    .update(req.body, {
-      where: {
-        inv_cd_instituicao_veiculo: req.body.inv_cd_instituicao_veiculo
-      }
-    })
-    .then(function(instituicaoVeiculo) {
-      res.json(instituicaoVeiculo);
-    })
-    .catch(function(error) {
-      res.status(412).json(error);
-    });
+      .InstituicaoVeiculo
+      .update(req.body, {
+        where: {
+          inv_cd_instituicao_veiculo: req.body.inv_cd_instituicao_veiculo
+        }
+      })
+      .then(function (instituicaoVeiculo) {
+        res.json(instituicaoVeiculo);
+      })
+      .catch(function (error) {
+        res.status(412).json(error);
+      });
   };
-  
-  controller.delete = function(req, res) {
+
+  controller.delete = function (req, res) {
     models
       .InstituicaoVeiculo
       .delete(req.body, {
@@ -78,10 +106,10 @@ module.exports = function (app) {
           inv_cd_instituicao_veiculo: req.params.id
         }
       })
-      .then(function(instituicaoVeiculo) {
+      .then(function (instituicaoVeiculo) {
         res.json(instituicaoVeiculo);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         res.status(500).json(error);
       });
   };

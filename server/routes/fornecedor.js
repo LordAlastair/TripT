@@ -11,10 +11,9 @@ module.exports = function (app) {
   router.use(passport.authenticate('jwt', { session: false }));
 
   router.get('/:', controller.find);
-  router.put('/:id', controller.update);
+  router.put('/', controller.update);
 
   router.post('/', controller.create);
-  //router.get('/', controller.findAll);
 
   app.use('/fornecedor', router)
 };

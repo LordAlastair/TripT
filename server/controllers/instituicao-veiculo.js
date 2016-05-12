@@ -52,7 +52,7 @@ module.exports = function (app) {
   controller.findAll = function (req, res) {
     models
       .InstituicaoVeiculo
-      .findAll({ include: [{ all: true }] })
+      .findAll()
       .then(function (instituicaoVeiculo) {
         res.json(instituicaoVeiculo);
       });

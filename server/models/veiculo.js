@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Sequelize = sequelize.Sequelize;
 
   var Veiculo = sequelize.define('Veiculo', {
@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    vei_cd_fornecedor: {
+      allowNull: false,
       type: Sequelize.INTEGER
     },
     vei_ds_placa: {
@@ -26,23 +30,29 @@ module.exports = function(sequelize, DataTypes) {
     },
     vei_ds_cor: {
       type: Sequelize.STRING
+    },
+    vei_dt_criado: {
+      type: Sequelize.DATE
+    },
+    vei_dt_alterado: {
+      type: Sequelize.DATE
     }
   }, {
-    timestamps: false,
-    classMethods: {
-      associate: function(models) {
-        Veiculo.hasMany(models.VeiculoCaracteristica, {
-          foreignKey: 'vec_cd_veiculo',
-          allowNull: false
-        });
+      timestamps: false,
+      classMethods: {
+        associate: function (models) {
+          Veiculo.hasMany(models.VeiculoCaracteristica, {
+            foreignKey: 'vec_cd_veiculo',
+            allowNull: false
+          });
 
-        Veiculo.belongsTo(models.Usuario, {
-          foreignKey: 'vei_cd_usuario',
-          allowNull: false
-        });
+          Veiculo.belongsTo(models.Usuario, {
+            foreignKey: 'vei_cd_usuario',
+            allowNull: false
+          });
+        }
       }
-    }
-  });
+    });
 
   return Veiculo;
 };

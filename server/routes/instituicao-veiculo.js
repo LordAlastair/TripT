@@ -8,8 +8,8 @@ module.exports = function (app) {
   const router = express.Router();
 
   router.get('/', controller.findAll);
-  router.post('/', controller.create);
   router.get('/:id', controller.find);
+  router.post('/', controller.create);
   router.put('/:id', controller.update);
   router.delete('/:id', controller.delete);
 

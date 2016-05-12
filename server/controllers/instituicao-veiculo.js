@@ -7,43 +7,26 @@ const strings = require("../config/strings.json");
 
 module.exports = function (app) {
   var controller = {};
+  
   controller.find = function(req, res) {
     models
     .InstituicaoVeiculo
-    .findOne({
-      where: {
-        inv_cd_instituicao_veiculo: req.query.inv_cd_instituicao_veiculo
+    .findById(req.params.id, {include : [{all:true}]} )
+    .then(function(veiculoBairro) {
+      if (veiculoBairro) {
+        res.json(veiculoBairro);
+      } else {
+        res.status(404).send();
       }
-    })
-    .then(function(instituicaoVeiculo) {
-      if (!instituicaoVeiculo) {
-        res.status(404).end();
-        return;
-      }
-
-      res.json(instituicaoVeiculo);
     });
   };
-
+  
   controller.findAll = function(req, res) {
     models
-    .Veiculo
-    .findOne({
-      where: {
-        vei_cd_veiculo: req.veiculo.vei_cd_veiculo
-      }
-    })
-    .then(function(instituicao) {
-      models
-      .InstituicaoVeiculo
-      .findAll({
-        where: {
-          vei_cd_veiculo: instituicaoVeiculo.inv_cd_instituicao_veiculo
-        }
-      })
-      .then(function(instituicaoVeiculo) {
-        res.json(instituicaoVeiculo);
-      });
+    .InstituicaoVeiculo
+    .findAll({ include: [{ all: true }]})
+    .then(function(instituicaoVeiculo) {
+      res.json(instituicaoVeiculo);
     });
   };
 

@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
     veb_cd_bairro: {
       allowNull: false,
       type: Sequelize.INTEGER
+    },
+    veb_cd_instituicao_veiculo: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     }
   }, {
     timestamps: false,

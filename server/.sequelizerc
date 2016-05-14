@@ -1,0 +1,6 @@
+var path = require('path')
+var configFile = process.env.DOCKER_ENV ? 'config.docker.json' : 'config.json';
+
+module.exports = {
+  'config': path.resolve('config', configFile)
+}

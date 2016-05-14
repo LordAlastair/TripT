@@ -5,8 +5,8 @@ const strings = require("../config/strings.json");
 
 module.exports = function (app) {
   var controller = {};
-  controller.find = function(req, res) {
 
+  controller.find = function(req, res) {
     models
     .Cliente
     .findOne({

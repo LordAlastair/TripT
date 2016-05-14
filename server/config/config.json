@@ -3,7 +3,7 @@
     "username": "admin",
     "password": "passw0rd",
     "database": "tript",
-    "host": "192.168.99.100",
+    "host": "localhost",
     "port": "32776",
     "dialect": "postgres"
   },

@@ -129,22 +129,6 @@ module.exports = function (app) {
     });
   };
 
-  controller.findAll = function(req, res) {
-    models
-    .Veiculo
-    .findAll({
-      where: {
-        vei_cd_usuario: req.user.usu_cd_usuario
-      },
-      include: [
-        { all: true }
-      ]
-    })
-    .then(function(veiculos) {
-      res.json(veiculos);
-    });
-  };
-
   controller.search = function(req, res) {
     models
     .Veiculo

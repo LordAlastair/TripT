@@ -24,6 +24,8 @@ services:
     image: kiasaki/alpine-postgres:latest
     ports:
       - 32776:5432
+    volumes:
+      - ./pg/data:/var/lib/postgresql/
     environment:
       - POSTGRES_PASSWORD=passw0rd
       - POSTGRES_USER=admin

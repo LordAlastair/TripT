@@ -1,3 +1,4 @@
 .vagrant
 server/node_modules
+pg
 npm-debug.log

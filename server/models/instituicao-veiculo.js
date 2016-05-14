@@ -19,10 +19,6 @@ module.exports = function (sequelize, DataTypes) {
         inv_ds_turno: {
             allowNull: false,
             type: Sequelize.STRING
-        },
-        inv_vl_rota: {
-            allowNull: false,
-            type: Sequelize.DECIMAL(18, 2)
         }
     },  {
     timestamps: false,

@@ -16,13 +16,13 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             type: Sequelize.INTEGER
         },
-        inv_ds_hora_ida: {
+        inv_ds_turno: {
             allowNull: false,
-            type: Sequelize.TIME
+            type: Sequelize.STRING
         },
-        inv_ds_hora_volta: {
+        inv_vl_rota: {
             allowNull: false,
-            type: Sequelize.TIME
+            type: Sequelize.DECIMAL(18, 2)
         }
     },  {
     timestamps: false,

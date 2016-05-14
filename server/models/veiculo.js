@@ -31,10 +31,16 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        Veiculo.hasMany(models.VeiculoCaracteristica, {
-          foreignKey: 'vec_cd_veiculo',
-          allowNull: false
-        });
+        Veiculo.belongsToMany(models.Bairro, {
+             as: 'Rotas',
+             through: {
+               model: models.VeiculoBairro,
+               unique: false
+             },
+             foreignKey: 'veb_cd_veiculo',
+             otherKey: 'veb_cd_bairro',
+             timestamps: false
+       });
 
         Veiculo.belongsTo(models.Usuario, {
           foreignKey: 'vei_cd_usuario',

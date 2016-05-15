@@ -25,7 +25,10 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-
+        Usuario.hasOne(models.Fornecedor, {
+          foreignKey: 'for_cd_usuario',
+          allowNull: false
+        });
       }
     },
     instanceMethods: { },

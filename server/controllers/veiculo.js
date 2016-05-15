@@ -132,7 +132,13 @@ module.exports = function (app) {
     .Veiculo
     .findAll({
       include: [
-        { all: true }
+        { all: true },
+        {
+          model: models.Usuario,
+          include: [
+            models.Fornecedor
+          ]
+         }
       ]
     })
     .then(function(veiculos) {

@@ -11,8 +11,8 @@ class ResponseHandler {
     return [ { msg, error } ];
   }
 
-  static getTokenResponse(usuario) {
-    return TokenResponse(usuario);
+  static getTokenResponse(usuario, role) {
+    return TokenResponse(usuario, role);
   }
 }
 

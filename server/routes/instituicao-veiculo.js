@@ -4,17 +4,15 @@ const express = require('express');
 const passport = require('passport');
 
 module.exports = function (app) {
-  const controller = app.controllers.veiculo;
+  const controller = app.controllers["instituicao-veiculo"];
   const router = express.Router();
 
-  router.use(passport.authenticate('jwt', { session: false }));
-
   router.get('/', controller.findAll);
-  router.post('/', controller.create);
-
   router.get('/:id', controller.find);
+  router.get('/:id/:idInstituicao?', controller.rotasInstituicao);
+  router.post('/', controller.create);
   router.put('/:id', controller.update);
   router.delete('/:id', controller.delete);
 
-  app.use('/veiculo', router)
+  app.use('/instituicao-veiculo', router)
 };

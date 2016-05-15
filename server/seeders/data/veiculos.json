@@ -1,0 +1,23 @@
+[
+  {
+    "vei_cd_usuario": "2",
+    "vei_ds_placa": "ZYA-1031",
+    "vei_ds_der": "1234353411",
+    "vei_qt_vagas": "10",
+    "vei_ds_cor": "Branco"
+  },
+  {
+    "vei_cd_usuario": "2",
+    "vei_ds_placa": "ZYZ-7890",
+    "vei_ds_der": "778899",
+    "vei_qt_vagas": "14",
+    "vei_ds_cor": "Preto"
+  },
+  {
+    "vei_cd_usuario": "2",
+    "vei_ds_placa": "OPO-7788",
+    "vei_ds_der": "8899001",
+    "vei_qt_vagas": "16",
+    "vei_ds_cor": "Azul"
+  }
+]

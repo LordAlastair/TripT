@@ -9,18 +9,18 @@ module.exports = function(app) {
 
   controller.find = function(req, res) {
     models
-      .FornecedorPlano
+      .FornecedorPagamentos
       .findById(req.params.id, {
         include: [
           { all: true }
         ]
       })
-      .then(function(fornecedorPlano) {
-        if(!fornecedorPlano){
+      .then(function(fornecedorPagamentos) {
+        if(!fornecedorPagamentos){
           res.status(404).end();
           return;
         }
-        res.json(fornecedorPlano);
+        res.json(fornecedorPagamentos);
       });
   };
 
@@ -34,14 +34,14 @@ module.exports = function(app) {
     })
     .then(function(fornecedor) {
       models
-      .FornecedorPlano
+      .FornecedorPagamentos
       .findAll({
         where: {
-          fop_cd_fornecedor: fornecedor.for_cd_fornecedor
+          fpg_cd_fornecedor: fornecedor.for_cd_fornecedor
         }
       })
-      .then(function(fornecedorPlano) {
-        res.json(fornecedorPlano);
+      .then(function(fornecedorPagamentos) {
+        res.json(fornecedorPagamentos);
       });
     });
   };
@@ -56,36 +56,36 @@ module.exports = function(app) {
     })
     .then(function(fornecedor) {
       models
-      .FornecedorPlano
+      .FornecedorPagamentos
       .findAll({
         where: {
-          fop_cd_fornecedor: fornecedor.for_cd_fornecedor
+          fpg_cd_fornecedor: fornecedor.for_cd_fornecedor
         }
       })
-      .then(function(fornecedorPlanos) {
-        var existing = fornecedorPlanos.map(fornecedorPlano => fornecedorPlano.fop_cd_plano);
+      .then(function(fornecedorPagamentos) {
+        var existing = fornecedorPagamentos.map(fornecedorPagamentos => fornecedorPagamentos.fpg_cd_pagamento);
 
         req.body.checked =
           req.body.checked
-          .filter(plano => !(existing.indexOf(plano.fop_cd_plano) !== -1))
-          .map(plano => {
-            plano.fop_cd_fornecedor = fornecedor.for_cd_fornecedor;
-            return plano;
+          .filter(pagamento => !(existing.indexOf(pagamento.fpg_cd_pagamento) !== -1))
+          .map(pagamento => {
+            pagamento.fpg_cd_fornecedor = fornecedor.for_cd_fornecedor;
+            return pagamento;
           });
 
         req.body.unchecked =
           req.body.unchecked
-          .filter(plano => existing.indexOf(plano.fop_cd_plano) !== -1)
-          .map(plano => plano.fop_cd_plano)
+          .filter(pagamento => existing.indexOf(pagamento.fpg_cd_pagamento) !== -1)
+          .map(pagamento => pagamento.fpg_cd_pagamento)
 
         async.parallel([
           function(cb) {
             models
-            .FornecedorPlano
+            .FornecedorPagamentos
             .destroy({
               where: {
-                fop_cd_fornecedor: fornecedor.for_cd_fornecedor,
-                fop_cd_plano: {
+                fpg_cd_fornecedor: fornecedor.for_cd_fornecedor,
+                fpg_cd_pagamento: {
                   $in: req.body.unchecked
                 }
               }
@@ -95,18 +95,18 @@ module.exports = function(app) {
           },
           function(cb) {
             models
-            .FornecedorPlano
+            .FornecedorPagamentos
             .bulkCreate(req.body.checked)
             .then(result => cb(null, result))
             .catch(error => cb(error, null));
-          },
+          }
         ], function(errors, results) {
           if (errors) {
             res.status(500).json(ResponseHandler.getErrorResponse(errors));
             return;
           }
 
-          res.status(200).json(ResponseHandler.getResponse(strings["fornecedor-plano"].success.UPDATE_OK));
+          res.status(200).json(ResponseHandler.getResponse(strings["fornecedor-pagamentos"].success.UPDATE_OK));
         });
       });
     });
@@ -114,18 +114,18 @@ module.exports = function(app) {
 
   controller.update = function(req, res) {
     models
-      .FornecedorPlano
+      .FornecedorPagamentos
       .update(req.body, {
         where: {
-          fop_cd_fornecedor_plano: req.params.id
+          fpg_cd_fornecedor_pagamentos: req.params.id
         }
       })
-      .then(function(fornecedorPlano) {
-        if (!fornecedorPlano){
+      .then(function(FornecedorPagamentos) {
+        if (!fornecedorPagamentos){
           res.status(404).end();
           return;
         }
-        res.json(fornecedorPlano);
+        res.json(fornecedorPagamentos);
       })
       .catch(function(error) {
         res.status(500).json(error);

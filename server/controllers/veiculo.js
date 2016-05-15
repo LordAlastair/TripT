@@ -70,8 +70,6 @@ module.exports = function (app) {
   };
 
   controller.update = function(req, res) {
-    //TEST: curl -v -X PUT -H 'Content-Type:application/json' -d '{ "vei_ds_placa": "ABC1234", "vei_ds_der": "33891505", "vei_qt_vagas": 2, "vei_ds_modelo": "coco", "vei_ds_cor": "desgraca"}' http://$(docker-machine ip):3000/veiculo/1
-
     models
     .Veiculo
     .update(req.body, {
@@ -126,6 +124,19 @@ module.exports = function (app) {
     })
     .catch(function(error) {
       res.status(500).json(ResponseHandler.getErrorResponse(strings.veiculo.errors.CANT_FIND_VEICULO, error));
+    });
+  };
+
+  controller.search = function(req, res) {
+    models
+    .Veiculo
+    .findAll({
+      include: [
+        { all: true }
+      ]
+    })
+    .then(function(veiculos) {
+      res.json(veiculos);
     });
   };
 

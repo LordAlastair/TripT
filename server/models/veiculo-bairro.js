@@ -21,7 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     veb_cd_instituicao_veiculo: {
       allowNull: true,
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
+      unique: false
     },
     veb_vl_bairro: {
       allowNull: false,
@@ -31,7 +32,15 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
+        VeiculoBairro.belongsTo(models.Veiculo, {
+          foreignKey: 'veb_cd_veiculo',
+          allowNull: false
+        });
 
+        VeiculoBairro.belongsTo(models.Bairro, {
+          foreignKey: 'veb_cd_bairro',
+          allowNull: false
+        });
       }
     }
   });

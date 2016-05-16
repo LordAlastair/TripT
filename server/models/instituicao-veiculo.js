@@ -10,11 +10,13 @@ module.exports = function (sequelize, DataTypes) {
         },
         inv_cd_instituicao: {
             allowNull: false,
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            unique: false
         },
         inv_cd_veiculo: {
             allowNull: false,
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            unique: false
         },
         inv_ds_turno: {
             allowNull: false,
@@ -24,10 +26,20 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        InstituicaoVeiculo.hasMany(models.VeiculoBairro, {
-          foreignKey: 'veb_cd_instituicao_veiculo',
-          allowNull: false
-        });
+          InstituicaoVeiculo.hasMany(models.VeiculoBairro, {
+               foreignKey: 'veb_cd_instituicao_veiculo',
+               allowNull: false
+          });
+
+          InstituicaoVeiculo.belongsTo(models.Veiculo, {
+            foreignKey: 'inv_cd_veiculo',
+            allowNull: false
+          });
+
+          InstituicaoVeiculo.belongsTo(models.Instituicao, {
+            foreignKey: 'inv_cd_instituicao',
+            allowNull: false
+          });
       }
     }
   });

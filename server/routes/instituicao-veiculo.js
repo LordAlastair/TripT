@@ -6,7 +6,7 @@ const passport = require('passport');
 module.exports = function (app) {
   const controller = app.controllers["instituicao-veiculo"];
   const router = express.Router();
-
+  router.use(passport.authenticate('jwt', { session: false }));
   router.get('/', controller.findAll);
   router.get('/:id', controller.find);
   router.get('/:id/:idInstituicao?', controller.rotasInstituicao);

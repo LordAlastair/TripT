@@ -59,15 +59,55 @@ module.exports = function (app) {
   };
 
   controller.create = function (req, res) {
+    //
+
     models
-      .InstituicaoVeiculo
-      .create(req.body)
-      .then(function (instituicaoVeiculo) {
-        res.status(201).json(instituicaoVeiculo);
-      })
-      .catch(function (error) {
-        res.status(412).json(error);
-      });
+    .Fornecedor
+    .findOne({
+      where: {
+        for_cd_usuario: req.user.usu_cd_usuario
+      }
+    }).then(function(response){
+      if(req.body.inv_cd_instituicao)
+        var inv_cd_instituicao1 = req.body.inv_cd_instituicao;
+      else
+        var inv_cd_instituicao1 = null;
+      var params = {
+        inv_cd_veiculo: req.body.inv_cd_veiculo.vei_cd_veiculo,
+        inv_cd_instituicao: inv_cd_instituicao1,
+        inv_cd_fornecedor: response.for_cd_fornecedor,
+        inv_cd_tipo_transporte: req.body.inv_cd_tipo_transporte,
+        inv_ds_turno: req.body.inv_ds_turno,
+      };
+
+      models
+        .InstituicaoVeiculo
+        .create(params)
+        .then(function (instituicaoVeiculo) {
+
+
+          for (req.body.bairros in cd) {
+            var params2 = {
+              veb_cd_bairro: cd,
+              veb_cd_veiculo: params.inv_cd_veiculo,
+              veb_cd_instituicao_veiculo: instituicaoVeiculo.inv_cd_instituicao_veiculo,
+              veb_vl_bairro: 0
+            };
+
+            models
+              .VeiculoBairro
+              .create(params2);
+          }
+
+          res.status(201).json(instituicaoVeiculo);
+
+        })
+        .catch(function (error) {
+          res.status(412).json(error);
+        })
+    });
+
+
   };
 
   controller.update = function (req, res) {
@@ -91,6 +131,12 @@ module.exports = function (app) {
         }
       })
       .then(function (instituicaoVeiculo) {
+
+
+
+
+
+
         res.json(instituicaoVeiculo);
       })
       .catch(function (error) {

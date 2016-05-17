@@ -129,10 +129,26 @@ module.exports = function (app) {
 
   controller.search = function(req, res) {
     models
-    .Veiculo
+    .InstituicaoVeiculo
     .findAll({
       include: [
-        { all: true }
+        { all: true },
+        {
+          model: models.Veiculo,
+          include: [
+              {
+              model: models.Usuario,
+              include: [{
+                model: models.Fornecedor
+              }]
+            }
+          ]
+          ,
+          model: models.VeiculoBairro,
+          include: [{
+            model: models.Bairro
+          }]
+        }
       ]
     })
     .then(function(veiculos) {

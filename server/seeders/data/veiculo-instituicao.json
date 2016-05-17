@@ -1,0 +1,36 @@
+[
+  {
+    "inv_cd_tipo_transporte": "1",
+    "inv_cd_fornecedor": "1",
+    "inv_cd_instituicao": "1",
+    "inv_cd_veiculo": "1",
+    "inv_ds_turno": "Matutino"
+  },
+  {
+    "inv_cd_tipo_transporte": "1",
+    "inv_cd_fornecedor": "1",
+    "inv_cd_instituicao": "1",
+    "inv_cd_veiculo": "1",
+    "inv_ds_turno": "Noturno"
+  },
+  {
+    "inv_cd_tipo_transporte": "1",
+    "inv_cd_fornecedor": "1",
+    "inv_cd_instituicao": "2",
+    "inv_cd_veiculo": "1",
+    "inv_ds_turno": "Noturno"
+  },
+  {
+    "inv_cd_tipo_transporte": "1",
+    "inv_cd_fornecedor": "1",
+    "inv_cd_instituicao": "2",
+    "inv_cd_veiculo": "1",
+    "inv_ds_turno": "Matutino"
+  },
+  {
+    "inv_cd_tipo_transporte": "2",
+    "inv_cd_fornecedor": "1",
+    "inv_cd_veiculo": "1",
+    "inv_ds_turno": "Matutino"
+  }
+]

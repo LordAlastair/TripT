@@ -31,21 +31,22 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        Veiculo.belongsToMany(models.Bairro, {
-             as: 'Rotas',
-             through: {
-               model: models.VeiculoBairro,
-               unique: false
-             },
-             foreignKey: 'veb_cd_veiculo',
-             otherKey: 'veb_cd_bairro',
-             timestamps: false
-       });
+          Veiculo.belongsToMany(models.Instituicao, {
+               as: 'RotasInstituicao',
+               through: {
+                 model: models.InstituicaoVeiculo,
+                 unique: false
+               },
+               foreignKey: 'inv_cd_veiculo',
+               otherKey: 'inv_cd_instituicao',
+               timestamps: false
+         });
 
-        Veiculo.belongsTo(models.Usuario, {
-          foreignKey: 'vei_cd_usuario',
-          allowNull: false
-        });
+          Veiculo.belongsTo(models.Usuario, {
+            foreignKey: 'vei_cd_usuario',
+            allowNull: false
+          });
+
       }
     }
   });

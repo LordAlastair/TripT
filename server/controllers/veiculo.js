@@ -135,7 +135,8 @@ module.exports = function (app) {
         { all: true },
         {
           model: models.Veiculo,
-          include: [{
+          include: [
+              {
               model: models.Usuario,
               include: [{
                 model: models.Fornecedor

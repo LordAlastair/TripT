@@ -18,6 +18,11 @@ module.exports = function (sequelize, DataTypes) {
             type: Sequelize.INTEGER,
             unique: false
         },
+        inv_cd_fornecedor: {
+            allowNull: false,
+            type: Sequelize.INTEGER,
+            unique: false
+        },
         inv_ds_turno: {
             allowNull: false,
             type: Sequelize.STRING
@@ -42,6 +47,11 @@ module.exports = function (sequelize, DataTypes) {
 
           InstituicaoVeiculo.belongsTo(models.Instituicao, {
             foreignKey: 'inv_cd_instituicao',
+            allowNull: false
+          });
+
+          InstituicaoVeiculo.belongsTo(models.Fornecedor, {
+            foreignKey: 'inv_cd_fornecedor',
             allowNull: false
           });
       }

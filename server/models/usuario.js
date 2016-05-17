@@ -29,6 +29,11 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'for_cd_usuario',
           allowNull: false
         });
+
+        Usuario.hasMany(models.Veiculo, {
+          foreignKey: 'vei_cd_usuario',
+          allowNull: false
+        });
       }
     },
     instanceMethods: { },

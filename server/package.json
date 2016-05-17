@@ -1,6 +1,6 @@
 {
   "name": "tript-backend",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Backend do serviço Tript",
   "main": "index.js",
   "scripts": {

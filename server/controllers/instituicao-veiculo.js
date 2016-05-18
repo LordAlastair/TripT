@@ -68,8 +68,9 @@ module.exports = function (app) {
         for_cd_usuario: req.user.usu_cd_usuario
       }
     }).then(function(response){
+
       if(req.body.inv_cd_instituicao)
-        var inv_cd_instituicao1 = req.body.inv_cd_instituicao;
+        var inv_cd_instituicao1 = req.body.inv_cd_instituicao.ins_cd_instituicao;
       else
         var inv_cd_instituicao1 = null;
       var params = {
@@ -84,9 +85,12 @@ module.exports = function (app) {
         .InstituicaoVeiculo
         .create(params)
         .then(function (instituicaoVeiculo) {
-
+          res.status(201).json(instituicaoVeiculo);
 
           for (req.body.bairros in cd) {
+
+
+
             var params2 = {
               veb_cd_bairro: cd,
               veb_cd_veiculo: params.inv_cd_veiculo,
@@ -99,11 +103,11 @@ module.exports = function (app) {
               .create(params2);
           }
 
-          res.status(201).json(instituicaoVeiculo);
+
 
         })
         .catch(function (error) {
-          res.status(412).json(error);
+          res.status(500).json(ResponseHandler.getErrorResponse("Erro ta aqui"));
         })
     });
 
@@ -140,7 +144,7 @@ module.exports = function (app) {
         res.json(instituicaoVeiculo);
       })
       .catch(function (error) {
-        res.status(412).json(error);
+        res.status(500).json(ResponseHandler.getErrorResponse("Zicou aqui"));
       });
   };
 
@@ -156,7 +160,7 @@ module.exports = function (app) {
         res.json(instituicaoVeiculo);
       })
       .catch(function (error) {
-        res.status(500).json(error);
+        res.status(500).json(ResponseHandler.getErrorResponse("Error"));
       });
   };
 
